@@ -13,7 +13,7 @@ use DBIx::Class::Smooth -all;
 use experimental qw/postderef signatures/;
 
 primary id => IntegerField(auto_increment => 1);
-    col first_name => VarcharField();
-    col last_name => VarcharField();
+    col first_name => VarcharField(indexed => 'authorname');
+    col last_name => VarcharField(indexed => 'authorname');
 
 1;
