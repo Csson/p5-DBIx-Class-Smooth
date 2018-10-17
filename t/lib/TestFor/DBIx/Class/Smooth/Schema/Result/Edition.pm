@@ -4,8 +4,6 @@ use warnings;
 
 package TestFor::DBIx::Class::Smooth::Schema::Result::Edition;
 
-# ABSTRACT: ...
-# AUTHORITY
 our $VERSION = '0.0001';
 
 use TestFor::DBIx::Class::Smooth::Schema::Result;

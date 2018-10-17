@@ -3,8 +3,6 @@ use warnings;
 
 package TestFor::DBIx::Class::Smooth::Schema::ResultSet;
 
-# ABSTRACT: ...
-# AUTHORITY
 our $VERSION = '0.0001';
 
 use base 'DBIx::Class::Candy::ResultSet';

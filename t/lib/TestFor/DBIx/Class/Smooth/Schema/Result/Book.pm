@@ -4,8 +4,6 @@ use warnings;
 
 package TestFor::DBIx::Class::Smooth::Schema::Result::Book;
 
-# ABSTRACT: ...
-# AUTHORITY
 our $VERSION = '0.0001';
 
 use TestFor::DBIx::Class::Smooth::Schema::Result;
@@ -14,6 +12,5 @@ use experimental qw/postderef signatures/;
 
 primary id => IntegerField(auto_increment => 1);
     col title => VarcharField(size => 150, indexed => 1);
-ManyToMany 'Author', via => 'BookAuthor';
 
 1;
