@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 use if $ENV{'AUTHOR_TESTING'}, 'Test::Warnings';
 
-use DBIx::Class::Smooth -all;
+use DBIx::Class::Smooth::Fields -all;
 
 ok 1, 'Loaded';
 
