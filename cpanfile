@@ -1,4 +1,4 @@
-# This file was auto-generated from iller.yaml by Dist::Iller on 2018-10-15 11:52:20 UTC.
+# This file was auto-generated from iller.yaml by Dist::Iller on 2018-10-28 10:30:06 UTC.
 
 on runtime => sub {
     requires 'perl' => '5.010000';
@@ -71,7 +71,7 @@ on develop => sub {
     requires 'Dist::Zilla::Plugin::Test::Version' => '1.05';
     requires 'Dist::Zilla::Plugin::TestRelease' => '0';
     requires 'Dist::Zilla::Plugin::TravisYML' => '1.15';
-    requires 'Dist::Zilla::Plugin::UploadToCPAN' => '0';
+    requires 'Dist::Zilla::Plugin::UploadToStratopan' => '0';
     requires 'Pod::Elemental::Transformer::List' => '0';
     requires 'Pod::Weaver::Plugin::SingleEncoding' => '0';
     requires 'Pod::Weaver::Plugin::Transformer' => '0';

@@ -85,7 +85,7 @@
             "Dist::Zilla::Plugin::Test::Version" : "1.05",
             "Dist::Zilla::Plugin::TestRelease" : "0",
             "Dist::Zilla::Plugin::TravisYML" : "1.15",
-            "Dist::Zilla::Plugin::UploadToCPAN" : "0",
+            "Dist::Zilla::Plugin::UploadToStratopan" : "0",
             "Pod::Elemental::Transformer::List" : "0",
             "Pod::Weaver::Plugin::SingleEncoding" : "0",
             "Pod::Weaver::Plugin::Transformer" : "0",
@@ -132,12 +132,20 @@
       }
    },
    "provides" : {
-      "DBIx::Class::Smooth" : {
-         "file" : "lib/DBIx/Class/Smooth.pm",
+      "DBIx::Class::Smooth::Fields" : {
+         "file" : "lib/DBIx/Class/Smooth/Fields.pm",
          "version" : "0.0100"
       },
       "DBIx::Class::Smooth::Helper::Row::Creation" : {
          "file" : "lib/DBIx/Class/Smooth/Helper/Row/Creation.pm",
+         "version" : "0.0100"
+      },
+      "DBIx::Class::Smooth::Helper::Row::JoinTable" : {
+         "file" : "lib/DBIx/Class/Smooth/Helper/Row/JoinTable.pm",
+         "version" : "0.0100"
+      },
+      "DBIx::Class::Smooth::Helper::Util" : {
+         "file" : "lib/DBIx/Class/Smooth/Helper/Util.pm",
          "version" : "0.0100"
       },
       "DBIx::Class::Smooth::Result" : {
@@ -632,11 +640,6 @@
             "version" : "6.012"
          },
          {
-            "class" : "Dist::Zilla::Plugin::UploadToCPAN",
-            "name" : "UploadToCPAN",
-            "version" : "6.012"
-         },
-         {
             "class" : "Dist::Zilla::Plugin::TravisYML",
             "name" : "TravisYML",
             "version" : "1.15"
@@ -761,6 +764,11 @@
             "class" : "Dist::Zilla::Plugin::Clean",
             "name" : "Clean",
             "version" : "0.07"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::UploadToStratopan",
+            "name" : "UploadToStratopan",
+            "version" : "0.012"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",
