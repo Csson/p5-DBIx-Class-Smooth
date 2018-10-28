@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Result::Base;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0104';
+our $VERSION = '0.0101';
 
 use base 'DBIx::Class::Core';
 
