@@ -5,7 +5,7 @@ use warnings;
 package DBIx::Class::Smooth::Helper::Util;
 
 # ABSTRACT: Short intro
-# AUTHORITY 
+# AUTHORITY
 our $VERSION = '0.0104';
 
 
