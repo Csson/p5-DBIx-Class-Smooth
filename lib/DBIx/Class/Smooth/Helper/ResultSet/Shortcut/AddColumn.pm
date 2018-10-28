@@ -14,7 +14,7 @@ use experimental qw/signatures postderef/;
 
 sub add_column($self, @args) {
     # If given single argument, fall back to DBIx::Class::Helper::ResultSet::Shortcut::AddColumns
-    if(scalar @args == 1)
+    if(scalar @args == 1) {
         if(ref $args[0] eq 'ARRAY') {
             return $self->add_columns($args[0]);
         }
