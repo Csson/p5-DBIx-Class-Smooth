@@ -1,3 +1,4 @@
+# PODNAME: DBIx::Class::Smooth
 
 =pod
 
