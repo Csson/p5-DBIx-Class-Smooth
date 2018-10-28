@@ -768,7 +768,7 @@
          {
             "class" : "Dist::Zilla::Plugin::UploadToStratopan",
             "name" : "UploadToStratopan",
-            "version" : "0.012"
+            "version" : "0.015"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",
