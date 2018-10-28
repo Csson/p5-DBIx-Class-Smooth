@@ -15,8 +15,8 @@ use experimental qw/postderef signatures/;
 
 our $dbix_class_smooth_methods_created = 0;
 
-sub connection($self) {
-    $self = $self->next::method(@_);
+sub connection($self, @rest) {
+    $self = $self->next::method(@rest);
 
     if(!$dbix_class_smooth_methods_created) {
         $self->_dbix_class_smooth_create_methods();
