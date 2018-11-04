@@ -5,52 +5,54 @@ use warnings;
 package DBIx::Class::Smooth::Q;
 
 # ABSTRACT: Short intro
-our $AUTHORITY = 'cpan:CSSON'; # AUTHORITY
+# AUTHORITY
 our $VERSION = '0.0101';
 
 use Carp qw/croak/;
+use Safe::Isa qw/$_isa/;
 use Mo;
 use Sub::Exporter::Progressive -setup => {
+    exports =>  [qw/Q/],
     groups => {
         default => [qw/Q/],
     },
 };
 
-use overload '&' => "do_and", '|' => 'do_or';
-use Data::Dump::Streamer;
+use overload
+    '&' => 'do_and',
+    '|' => 'do_or',
+    '~' => 'do_not';
+
 use experimental qw/signatures postderef/;
 
 has value => ();
 
 sub Q(@args) {
-    return Q->new(value => \@args);
+    if(scalar @args == 1 && $args[0]->$_isa('DBIx::Class::Smooth::Q')) {
+        return $args[0];
+    }
+    return DBIx::Class::Smooth::Q->new(value => [-and => \@args]);
 }
 
 sub do_and($self, $other, $swap) {
-    say '- AND -';
-    say Dump $self->value;
-    say Dump $other->value;
-    say ' // AND';
-    my $new = DBIx::Class::Sweeten::Q->new(value => [-and => [$self->value->@*, $other->value->@* ]]);
-    return $new;
+    say '---';
+    say 'and self:  ' . join ', ' => $self->value->[1]->@*;
+    say 'and other: ' . join ', ' => $other->value->[1]->@*;
+    return DBIx::Class::Smooth::Q->new(value => [-and => [$self->value->@*, $other->value->@* ]]);
 }
 
 sub do_or($self, $other, $swap) {
-    say '- OR -' . $swap;
-    say 'self value ref : ' . ref $self->value;
-    say 'other value ref: ' . ref $other->value;
-    say Dump $self->value;
-    say '      - ';
-    say Dump $other->value;
-    say '===';
-    my $new_value = [-or => { $self->value->@*, $other->value->@* }];
-    say Dump $new_value;
+    say '---';
+    say ' or self:  ' . join ', ' => $self->value->[1]->@*;
+    say ' or other: ' . join ', ' => $other->value->[1]->@*;
+    if($self->value->[0] eq '-and' && $other->value->[0] eq '-and') {
+        return DBIx::Class::Smooth::Q->new(value => [-or => [$self->value->[1]->@*, $other->value->[1]->@*]]);
+    }
+    return DBIx::Class::Smooth::Q->new(value => [-or => [$self->value->@*, $other->value->@* ]]);
+}
 
-    my $new = DBIx::Class::Sweeten::Q->new(value => $new_value);
-    say 'ref: ' . ref $new;
-    say Dump $new->value;
-    say ' // OR';
-    return $new;
+sub do_not($self, $undef, $swap) {
+    return DBIx::Class::Smooth::Q->new(value => [-not_bool => [$self->value->@*]]);
 }
 
 1;
