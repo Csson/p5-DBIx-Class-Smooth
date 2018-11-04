@@ -26,7 +26,7 @@ plugins:
     repo: TheFirst
     stack: master
 
-
+  - +remove_plugin: PromptIfStale
 ---
 doctype: weaver
 
