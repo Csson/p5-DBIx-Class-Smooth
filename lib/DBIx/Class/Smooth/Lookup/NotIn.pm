@@ -15,7 +15,6 @@ sub lookup__not_in($self, $key, $value) {
     if(ref $value ne 'ARRAY') {
         die 'not_in expects an array';
     }
-    say $key;
     $key =~ s{__not_in$}{};
     return ($key, { -not_in => $value });
 }

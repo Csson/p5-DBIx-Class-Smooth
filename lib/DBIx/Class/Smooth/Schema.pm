@@ -82,14 +82,17 @@ The resultset methods can be called in four different ways.
     $schema->Author;
 
 =head3 With a scalar
+
     # $schema->resultset('Author')->find(5)
     $schema->Author(5);
 
 =head3 With an array reference
+
     # $schema->resultset('Book')->find({ author => 'J.R.R Tolkien', title => 'The Hobbit' }, { key => 'book_author_title' });
     $schema->Book([book_author_title => { author => 'J.R.R Tolkien', title => 'The Hobbit' }]);
 
 =head3 With anything else
+
     # $schema->resultset('Author')->search({ last_name => 'Tolkien'}, { order_by => { -asc => 'first_name' }});
     $schema->Author({ last_name => 'Tolkien'}, { order_by => { -asc => 'first_name' }});
 

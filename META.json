@@ -70,7 +70,6 @@
             "Dist::Zilla::Plugin::PodSyntaxTests" : "0",
             "Dist::Zilla::Plugin::PodWeaver" : "4.006",
             "Dist::Zilla::Plugin::Prereqs" : "0",
-            "Dist::Zilla::Plugin::PromptIfStale" : "0.055",
             "Dist::Zilla::Plugin::Readme" : "0",
             "Dist::Zilla::Plugin::ReadmeAnyFromPod" : "0.163250",
             "Dist::Zilla::Plugin::RewriteVersion::Transitional" : "0.007",
@@ -134,39 +133,67 @@
    "provides" : {
       "DBIx::Class::Smooth::Fields" : {
          "file" : "lib/DBIx/Class/Smooth/Fields.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Helper::ResultSet::Shortcut::AddColumn" : {
+         "file" : "lib/DBIx/Class/Smooth/Helper/ResultSet/Shortcut/AddColumn.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Helper::ResultSet::Shortcut::Join" : {
+         "file" : "lib/DBIx/Class/Smooth/Helper/ResultSet/Shortcut/Join.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Helper::ResultSet::Shortcut::RemoveColumns" : {
+         "file" : "lib/DBIx/Class/Smooth/Helper/ResultSet/Shortcut/RemoveColumns.pm",
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Helper::Row::Creation" : {
          "file" : "lib/DBIx/Class/Smooth/Helper/Row/Creation.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Helper::Row::JoinTable" : {
          "file" : "lib/DBIx/Class/Smooth/Helper/Row/JoinTable.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Helper::Util" : {
          "file" : "lib/DBIx/Class/Smooth/Helper/Util.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Like" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Like.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::NotIn" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/NotIn.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Year" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Year.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Q" : {
+         "file" : "lib/DBIx/Class/Smooth/Q.pm",
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Result" : {
          "file" : "lib/DBIx/Class/Smooth/Result.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Result::Base" : {
          "file" : "lib/DBIx/Class/Smooth/Result/Base.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::ResultSet" : {
          "file" : "lib/DBIx/Class/Smooth/ResultSet.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::ResultSet::Base" : {
          "file" : "lib/DBIx/Class/Smooth/ResultSet/Base.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Schema" : {
          "file" : "lib/DBIx/Class/Smooth/Schema.pm",
-         "version" : "0.0100"
+         "version" : "0.0101"
       }
    },
    "release_status" : "stable",
@@ -181,7 +208,7 @@
          "web" : "https://github.com/Csson/p5-DBIx-Class-Smooth"
       }
    },
-   "version" : "0.0100",
+   "version" : "0.0101",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.020001"
@@ -210,21 +237,6 @@
             },
             "name" : "Git::GatherDir",
             "version" : "2.045"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::PromptIfStale",
-            "config" : {
-               "Dist::Zilla::Plugin::PromptIfStale" : {
-                  "check_all_plugins" : 1,
-                  "check_all_prereqs" : 0,
-                  "modules" : [],
-                  "phase" : "build",
-                  "run_under_travis" : 0,
-                  "skip" : []
-               }
-            },
-            "name" : "PromptIfStale",
-            "version" : "0.055"
          },
          {
             "class" : "Dist::Zilla::Plugin::CopyFilesFromBuild",
@@ -679,7 +691,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "0.0100",
+                  "tag" : "0.0101",
                   "tag_format" : "%v",
                   "tag_message" : "Release %v%n%n%c"
                },
