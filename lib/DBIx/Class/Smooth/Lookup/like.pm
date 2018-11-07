@@ -2,7 +2,7 @@ use 5.20.0;
 use strict;
 use warnings;
 
-package DBIx::Class::Smooth::Lookup::Like;
+package DBIx::Class::Smooth::Lookup::like;
 
 # ABSTRACT: Short intro
 # AUTHORITY
@@ -11,12 +11,11 @@ our $VERSION = '0.0101';
 use parent 'DBIx::Class::Smooth::ResultSet::Base';
 use experimental qw/signatures postderef/;
 
-sub lookup__like($self, $key, $value) {
+sub smooth__lookup__like($self, $column_name, $value) {
     if(ref $value) {
         die 'like expects a string';
     }
-    $key =~ s{__like$}{};
-    return ($key, { -like => $value });
+    return { left_hand_prefix => 'BINARY', sql_operator => 'LIKE', value => $value };
 }
 
 1;
