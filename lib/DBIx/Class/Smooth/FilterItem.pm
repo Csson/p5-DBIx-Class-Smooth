@@ -197,53 +197,23 @@ sub parse($self) {
             }
         }
         push @left_hand => $function_call_string;
-=pod
-        # for now, just one function and no additional params
-        if($self->left_hand_functions && scalar $self->left_hand_functions->@* == 1) {
-            $left_hand .= sprintf '%s(%s) ', $self->left_hand_functions->[0]{'name'}, $self->column_name;
-        }
-        elsif(!$self->left_hand_functions) {
-            $left_hand .= sprintf ' %s ', $self->column_name;
-        }
-=cut
-        push @left_hand => $self->sql_operator ? $self->sql_operator : $self->operator;
+        push @left_hand => $self->sql_operator ? $self->sql_operator : $self->operator ? $self->operator : '=';
 
         if($self->get_quote_value) {
             # Either ? or (?, ?, ...., ?)
             my $placeholders = ref $self->get_value eq 'ARRAY' ? '(' . join(', ', split (//, ('?' x scalar $self->get_value->@*))) . ')' : ' ? ';
             push @left_hand => $placeholders;
+
             my $left_hand = join ' ' => @left_hand;
-            return (undef, \[$left_hand, $self->get_value->@*]);
+
+            return (undef, \[$left_hand, (ref $self->get_value eq 'ARRAY' ? $self->get_value->@* : $self->get_value)]);
         }
         else {
             push @left_hand => $self->get_value;
             my $left_hand = join ' ' => @left_hand;
             return (undef, \[$left_hand]);
         }
-
-
-        
-
-        #if((!defined $self->left_hand_functions || !scalar $self->left_hand_functions->@*) && defined $self->sql_operator) {
-        #    return (undef, \["@{[ $self->column_name ]} @{[ $self->sql_operator ]} ?", $self->get_value]);
-        #}
     }
-
-=pod
-
-    $possible_key = join '__', ($column_name, @key_parts);
-
-    for my $part (reverse @key_parts) {
-        my $method = 'lookup__' . $part;
-
-        if($self->can($method)) {
-            ($possible_key, $self->get_value) = $self->$method($possible_key, $self->get_value);
-        }
-        else {
-            die "Can't do $method";
-        }
-    }
-=cut
 }
 
 1;
