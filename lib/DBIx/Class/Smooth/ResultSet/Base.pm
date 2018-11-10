@@ -75,16 +75,10 @@ sub _prepare_for_filter__this_is_probably_not_working_well($self, $args) {
         else {
             say 'else';
             my @parts = split /__/ => $key;
-            say $key;
-            say 'no 1';
-            say @parts;
-            say 'no 2';
             push @prepared_args => 'wee' && next PAIR if scalar @parts == 1;
-            say 'HERE 2';
 
             my $possible_method_name = "lookup__$parts[-1]";
             if($self->can($possible_method_name)) {
-                say 'HERE 3';
                 if(ref $value eq 'HASH') {
                     die 'UNEXPECTED HASH';
                 }
@@ -99,9 +93,6 @@ sub _prepare_for_filter__this_is_probably_not_working_well($self, $args) {
 
         }
     }
-    say 'after:';
-    warn Dumper \@prepared_args;
-    say '---';
     return \@prepared_args;
 }
 
@@ -227,6 +218,7 @@ sub _prepare_for_filter__this_works_well($self, @args) {
 
 sub _prepare_for_filter($self, @args) {
     dumpit(\@args, 'in args');
+
     my @qobjs = grep { $_->$_isa('DBIx::Class::Smooth::Q') } @args;
     if(scalar @qobjs) {
         if(scalar @args > 1) {
@@ -280,14 +272,12 @@ sub _prepare_for_filter($self, @args) {
             }
         }
     }
-
     return $prepared_args;
 }
 
 sub filter($self, @args) {
     # only compatible with array and Q
     my $args = $self->_prepare_for_filter(-and => \@args);
-    dumpit($args, 'passed to search()');
     say Dumper $args;
     return $self->search($args);
     if(scalar @args == 1 && $args[0]->$_isa('DBIx::Class::Smooth::Q')) {
