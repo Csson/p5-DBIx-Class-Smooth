@@ -107,7 +107,7 @@ The following indices are created:
 * C<Author_idxa_last_name> for C<last_name>
 * C<Author_idxa_country> for C<country>
 
-=head2 Needs a custom sqlt_deploy_hook?
+=head2 Still need a custom sqlt_deploy_hook?
 
 If you need an C<sqlt_deploy_hook> method in a result source just call the parent's C<sqlt_deploy_hook> in your local sqlt_deploy_hook:
 
