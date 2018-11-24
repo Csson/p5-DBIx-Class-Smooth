@@ -17,7 +17,7 @@ use Carp qw/croak confess/;
 use Data::Dumper::Concise;
 use experimental qw/signatures postderef/;
 
-sub _prepare_for_filter($self, @args) {
+sub _smooth__prepare_for_filter($self, @args) {
     my @qobjs = grep { $_->$_isa('DBIx::Class::Smooth::Q') } @args;
     if(scalar @qobjs) {
         if(scalar @args > 1) {
@@ -43,7 +43,7 @@ sub _prepare_for_filter($self, @args) {
         # Dig deeper into the search structure
         if($possible_value && any { $possible_key eq $_ } (qw/-and -or -not_bool/)) {
             if(ref $possible_value eq 'ARRAY') {
-                push $prepared_args->@* => ($possible_key => $self->_prepare_for_filter($possible_value->@*));
+                push $prepared_args->@* => ($possible_key => $self->_smooth__prepare_for_filter($possible_value->@*));
                 $i += 2;
             }
         }
@@ -75,7 +75,7 @@ sub _prepare_for_filter($self, @args) {
 
 sub filter($self, @args) {
     # only compatible with array and Q
-    my $args = $self->_prepare_for_filter(-and => \@args);
+    my $args = $self->_smooth__prepare_for_filter(-and => \@args);
     return $self->search($args);
 }
 

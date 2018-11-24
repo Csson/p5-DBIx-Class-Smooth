@@ -27,27 +27,27 @@ isa_ok $schema, 'DBIx::Class::Schema';
 
 my $tests = [
     {
-        test => q{ $schema->resultset('Zone')->_prepare_for_filter(name__not_in => ['Silmarillion']) },
+        test => q{ $schema->resultset('Zone')->_smooth__prepare_for_filter(name__not_in => ['Silmarillion']) },
         result => ['me.name' => { -not_in => ['Silmarillion']}],
     },
     {
-        test => q{ $schema->resultset('Zone')->_prepare_for_filter(created_date_time__year => 2005) },
+        test => q{ $schema->resultset('Zone')->_smooth__prepare_for_filter(created_date_time__year => 2005) },
         result => [ \['EXTRACT(YEAR FROM me.created_date_time) =  ? ', 2005] ],
     },
     {
-        test => q{ $schema->resultset('Zone')->_prepare_for_filter("created_date_time__datepart(second)" => 59) },
+        test => q{ $schema->resultset('Zone')->_smooth__prepare_for_filter("created_date_time__datepart(second)" => 59) },
         result => [ \['EXTRACT(SECOND FROM me.created_date_time) =  ? ', 59] ],
     },
     {
-        test => q{ $schema->resultset('Zone')->_prepare_for_filter("created_date_time__datepart(badpart)" => 59) },
+        test => q{ $schema->resultset('Zone')->_smooth__prepare_for_filter("created_date_time__datepart(badpart)" => 59) },
         result => undef,
     },
     {
-        test => q{ $schema->resultset('Zone')->_prepare_for_filter("created_date_time__datepart(this, is, bad)" => 59) },
+        test => q{ $schema->resultset('Zone')->_smooth__prepare_for_filter("created_date_time__datepart(this, is, bad)" => 59) },
         result => undef,
     },
     {
-        test => q{ $schema->resultset('Zone')->_prepare_for_filter("name__substring(2, 9)__like" => '%anta Clau%') },
+        test => q{ $schema->resultset('Zone')->_smooth__prepare_for_filter("name__substring(2, 9)__like" => '%anta Clau%') },
         result => [ \['BINARY SUBSTRING(me.name, 2, 9) LIKE  ? ', '%anta Clau%'] ],
     },
 ];
