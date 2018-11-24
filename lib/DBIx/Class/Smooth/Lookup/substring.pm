@@ -9,18 +9,19 @@ package DBIx::Class::Smooth::Lookup::substring;
 our $VERSION = '0.0101';
 
 use parent 'DBIx::Class::Smooth::ResultSet::Base';
+use Carp qw/confess/;
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__substring($self, $column_name, $value, $params, @rest) {
-    if(ref $value) {
-        die 'like expects a string';
-    }
+    $self->smooth__lookup_util__ensure_value_is_string('substring', $value);
+    $self->smooth__lookup_util__ensure_param_count('substring', $params, { at_least => 1, at_most => 2, regex => qr/^\-?\d+$/ });
+
     if(scalar $params->@* < 1 || scalar $params->@* > 2) {
-        die sprintf 'substring expects one or two params, got <%s>', join (', ' => $params->@*);
+        confess sprintf 'substring expects one or two params, got <%s>', join (', ' => $params->@*);
     }
     my @secure_params = grep { /^\-?\d+$/ } $params->@*;
     if(scalar @secure_params != scalar $params->@*) {
-        die sprintf 'substring got faulty params: <%s>', join (', ' => $params->@*);
+        confess sprintf 'substring got faulty params: <%s>', join (', ' => $params->@*);
     }
 
     my $param_string = join ', ' => @secure_params;

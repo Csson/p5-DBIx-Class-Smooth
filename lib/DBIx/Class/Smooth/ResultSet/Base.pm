@@ -241,6 +241,7 @@ sub _prepare_for_filter($self, @args) {
 
         my $possible_key = $args[$i];
         my $possible_value = $i + 1 <= scalar @args - 1 ? $args[$i + 1] : undef;
+
         # Dig deeper into the search structure
         if($possible_value && any { $possible_key eq $_ } (qw/-and -or -not_bool/)) {
             if(ref $possible_value eq 'ARRAY') {
@@ -252,13 +253,15 @@ sub _prepare_for_filter($self, @args) {
             }
         }
         else {
-            # $possible_value isn't the value for \[] searches
+            # There is no $possible_value for \[] searches, the value is already in the arrayrefref
             if(ref $possible_key eq 'REF') {
                 push $prepared_args->@* => $possible_key;
                 $i++;
             }
             elsif(defined $possible_key && defined $possible_value) {
+
                 my @key_parts = split /__/ => $possible_key;
+
                 my $item = DBIx::Class::Smooth::FilterItem->new(resultset => $self, parts => \@key_parts, value => $possible_value);
                 ($possible_key, $possible_value) = $item->parse;
 

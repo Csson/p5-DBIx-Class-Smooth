@@ -9,21 +9,29 @@ package DBIx::Class::Smooth::Lookup::DateTime::datepart;
 our $VERSION = '0.0101';
 
 use parent 'DBIx::Class::Smooth::ResultSet::Base';
-use Carp qw/confess/;
+use Carp qw/carp confess/;
+use List::SomeUtils qw/any/;
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__datepart($self, $column_name, $value, $params, @rest) {
-    if(scalar $params->@* != 1) {
-        confess sprintf 'substring expects exactly one params, got <%s>', join (', ' => $params->@*);
-    }
-    my @secure_params = grep { /^[a-z_]+$/i } $params->@*;
-    if(scalar @secure_params != scalar $params->@*) {
-        die sprintf 'datepart got faulty params: <%s>', join (', ' => $params->@*);
-    }
+    $self->smooth__lookup_util__ensure_param_count('substring', $params, { at_least => 1, at_most => 1, regex => qr/^[a-z_]+$/i });
 
-    my $complete = $self->dt_SQL_pluck({ -ident => $column_name }, $params->[0]);
+    my $datepart = $params->[0];
 
-    return { left_hand_function => { complete => $complete->$*->[0] }, value => $value };
+    local $SIG{'__WARN__'} = sub ($message) {
+        if($message =~ m{uninitialized value within %part_map}) {
+            confess "<datepart> was passed <$datepart> as the datepart, but your database don't support that";
+        }
+        else {
+            warn $message;
+        }
+    };
+
+    my $complete = $self->dt_SQL_pluck({ -ident => $column_name }, $datepart);
+
+    my $function_call_string = $complete->$*->[0];
+
+    return { left_hand_function => { complete => $function_call_string }, value => $value };
 }
 
 1;

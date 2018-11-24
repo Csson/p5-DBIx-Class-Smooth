@@ -8,6 +8,7 @@ package DBIx::Class::Smooth::Helper::ResultSet::Shortcut::Join;
 # AUTHORITY
 our $VERSION = '0.0101';
 
+use parent 'DBIx::Class::Smooth::ResultSet::Base';
 use Carp qw/confess/;
 use experimental qw/signatures postderef/;
 

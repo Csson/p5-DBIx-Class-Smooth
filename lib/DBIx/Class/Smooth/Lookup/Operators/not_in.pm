@@ -8,13 +8,11 @@ package DBIx::Class::Smooth::Lookup::Operators::not_in;
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use parent 'DBIx::Class::Smooth::ResultSet::Base';
+use parent 'DBIx::Class::Smooth::Lookup::Util';
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__not_in($self, $column, $value, @rest) {
-    if(ref $value ne 'ARRAY') {
-        die 'not_in expects an array';
-    }
+    $self->smooth__lookup_util__ensure_value_is_arrayref('not_in', $value);
 
     return { sql_operator => 'NOT IN', operator => '-not_in', value => $value };
 }

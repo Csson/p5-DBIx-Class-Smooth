@@ -10,37 +10,65 @@ our $VERSION = '0.0101';
 
 use Carp qw/croak confess/;
 use Safe::Isa qw/$_isa/;
+use Scalar::Util qw/blessed/;
 use List::SomeUtils qw/any none/;
 use Data::Dumper::Concise;
-use Mo;
+use Moo;
 
 use experimental qw/signatures postderef/;
 
 # parts and resultset (and nothing else) are constructor args
-has parts => [];
-has resultset => undef;
+has parts => (
+    is => 'rw',
+    required => 1,
+    default => sub { [] },
+);
+has resultset => (
+    is => 'rw',
+    required => 1,
+    default => sub { undef },
+);
+has value => (
+    is => 'rw',
+    required => 1,
+);
 
-has left_hand_functions => [];
-has left_hand_prefix => undef;
-has value => undef;
-has quote_value => 1;
-has operator => undef;
-has sql_operator => undef;
-has column_name => undef;
+# so these are *not* constructor args
+for my $scalar_arg (qw/left_hand_prefix operator sql_operator column_name/) {
+    has $scalar_arg => (
+        is => 'rw',
+        default => sub { undef },
+    );
+}
+has left_hand_functions => (
+    is => 'rw',
+    default => sub { [] },
+);
+has quote_value => (
+    # it's a boolean!
+    is => 'rw',
+    default => sub { 1 },
+);
 
-sub get_value($self) {
-    return $self->value;
-}
-sub set_value($self, $new_value) {
-    return $self->value($new_value);
-}
-sub parts_get($self, $index) {
+around BUILDARGS => sub ($orig, $class, %args) {
+    if(exists $args{'resultset'} && exists $args{'value'}) {
+        if(blessed $args{'value'}) {
+            my $flatten_method = sprintf 'smooth__flatten__%s', blessed $args{'value'};
+            if($args{'resultset'}->can($flatten_method)) {
+                $args{'value'} = $args{'resultset'}->$flatten_method($args{'value'});
+            }
+        }
+    }
+    $class->$orig(%args);
+};
+
+sub get_part($self, $index) {
     return $self->parts->[$index];
 }
-sub parts_get_all($self) {
+sub get_all_parts($self) {
     return $self->parts->@*;
 }
-sub parts_shift($self, $repeats = 1) {
+sub shift_parts($self, $repeats = 1) {
     if($repeats == 1) {
         return shift $self->parts->@*;
     }
@@ -48,27 +76,17 @@ sub parts_shift($self, $repeats = 1) {
         return splice $self->parts->@*, 0, $repeats;
     }
 }
-sub set_column_name($self, $name) {
-    $self->column_name($name);
-}
-sub set_sql_operator($self, $operator) {
-    if(defined $self->operator) {
-        die "Trying to set sql_operator ($operator), but operator (@{[ $self->operator ]}) already set";
-    }
-    elsif(defined $self->sql_operator) {
-        die "Trying to set sql_operator ($operator), but it is already set to (@{[ $self->sql_operator ]})";
-    }
-    $self->sql_operator($operator);
-}
-sub set_operator($self, $operator) {
-    if(defined $self->operator) {
-    #    die "Trying to set operator ($operator), but it is already set to (@{[ $self->operator ]})";
-    }
-    elsif(defined $self->sql_operator) {
-    #    die "Trying to set operator ($operator), but sql_operator (@{[ $self->operator ]}) already set";
-    }
-    $self->operator($operator);
-}
+
+#sub set_sql_operator($self, $operator) {
+#    if(defined $self->operator) {
+#        die "Trying to set sql_operator ($operator), but operator (@{[ $self->operator ]}) already set";
+#    }
+#    elsif(defined $self->sql_operator) {
+#        die "Trying to set sql_operator ($operator), but it is already set to (@{[ $self->sql_operator ]})";
+#    }
+#    $self->sql_operator($operator);
+#}
+
 sub set_left_hand_prefix($self, $prefix) {
     if(defined $self->left_hand_prefix) {
         die "Trying to set left hand prefix ($prefix), but it is already set to (@{[ $self->left_hand_prefix ]})";
@@ -76,10 +94,7 @@ sub set_left_hand_prefix($self, $prefix) {
     $self->left_hand_prefix($prefix);
 }
 
-sub left_hand_function_add($self, $data) {
-    if(!$self->left_hand_functions) {
-        $self->left_hand_functions([]);
-    }
+sub add_left_hand_function($self, $data) {
     push $self->left_hand_functions->@* => $data;
 }
 sub left_hand_functions_get_all($self) {
@@ -88,44 +103,39 @@ sub left_hand_functions_get_all($self) {
     }
     return $self->left_hand_functions->@*;
 }
-sub set_quote_value($self, $value) {
-    $self->quote_value($value);
-}
-sub get_quote_value($self) {
-    return $self->quote_value;
-}
+
 sub parse($self) {
     # Ordinary column name, like 'me.first_name' or 'that_relation.whatever', then we keep that as the column name
-    if($self->parts_get(0) =~ m/\./) {
-        $self->set_column_name($self->parts_shift);
+    if($self->get_part(0) =~ m/\./) {
+        $self->column_name($self->shift_parts);
     }
     # Otherwise we make it into an ordinary column name
-    elsif($self->resultset->result_source->has_column($self->parts_get(0))) {
-        $self->set_column_name(sprintf '%s.%s', $self->resultset->current_source_alias, $self->parts_shift);
+    elsif($self->resultset->result_source->has_column($self->get_part(0))) {
+        $self->column_name(sprintf '%s.%s', $self->resultset->current_source_alias, $self->shift_parts);
     }
     else {
-        my $possible_relation = $self->parts_get(0);
-        my $possible_column = $self->parts_get(1);
+        my $possible_relation = $self->get_part(0);
+        my $possible_column = $self->get_part(1);
 
         my $has_relationship = $self->resultset->result_source->has_relationship($possible_relation);
 
         if($has_relationship && defined $possible_column && $self->resultset->result_source->relationship_info($possible_relation)->{'class'}->has_column($possible_column)) {
-            if($self->get_value->$_isa('DBIx::Class::Row')) {
+            if($self->value->$_isa('DBIx::Class::Row')) {
                 confess "Don't pass a row object to a column";
             }
-            $self->set_column_name(sprintf '%s.%s', $self->parts_shift(2));
+            $self->column_name(sprintf '%s.%s', $self->shift_parts(2));
         }
-        elsif($has_relationship && $self->get_value->$_isa('DBIx::Class::Row')) {
-            $self->set_column_name(sprintf '%s.id', $possible_relation);
-            $self->set_value($self->get_value->id);
-            $self->parts_shift;
+        elsif($has_relationship && $self->value->$_isa('DBIx::Class::Row')) {
+            $self->column_name(sprintf '%s.id', $possible_relation);
+            $self->value($self->value->id);
+            $self->shift_parts;
         }
         else {
             die "Has no relation <$possible_relation> or that has no column <$possible_column>";
         }
     }
 
-    for my $part ($self->parts_get_all) {
+    for my $part ($self->get_all_parts) {
         my @params = ();
         if($part =~ m{^ (\w+) \( ([^)]+) \) $}x) {
             $part = $1;
@@ -135,7 +145,7 @@ sub parse($self) {
 
         my $lookup_result;
         if($self->resultset->can($method)) {
-            $lookup_result = $self->resultset->$method($self->column_name, $self->get_value, \@params);
+            $lookup_result = $self->resultset->$method($self->column_name, $self->value, \@params);
         }
         else {
             confess "Can't do <$method>, find suitable Lookup and add it to load_components";
@@ -144,24 +154,24 @@ sub parse($self) {
         if(!exists $lookup_result->{'value'}) {
             confess "Lookup for <$part> is expected to return { value => ... }, can't proceed";
         }
-        $self->set_value(delete $lookup_result->{'value'});
+        $self->value(delete $lookup_result->{'value'});
         if(exists $lookup_result->{'left_hand_function'}) {
-            $self->left_hand_function_add(delete $lookup_result->{'left_hand_function'});
+            $self->add_left_hand_function(delete $lookup_result->{'left_hand_function'});
         }
         if(exists $lookup_result->{'left_hand_prefix'}) {
             $self->set_left_hand_prefix(delete $lookup_result->{'left_hand_prefix'});
         }
         if(exists $lookup_result->{'sql_operator'}) {
-            $self->set_sql_operator(delete $lookup_result->{'sql_operator'});
+            $self->sql_operator(delete $lookup_result->{'sql_operator'});
         }
         if(exists $lookup_result->{'operator'}) {
-            $self->set_operator(delete $lookup_result->{'operator'});
+            $self->operator(delete $lookup_result->{'operator'});
         }
         if(exists $lookup_result->{'quote_value'}) {
-            $self->set_quote_value(delete $lookup_result->{'quote_value'});
+            $self->quote_value(delete $lookup_result->{'quote_value'});
         }
         else {
-            $self->set_quote_value(1);
+            $self->quote_value(1);
         }
         if(scalar keys $lookup_result->%*) {
             die sprintf "Unexpected keys returned from lookup for <$part>: %s", join(', ' => sort keys $lookup_result->%*);
@@ -169,14 +179,14 @@ sub parse($self) {
     }
 
     # Happy case
-    if((!defined $self->left_hand_functions || !scalar $self->left_hand_functions->@*) && !defined $self->left_hand_prefix && $self->get_quote_value) {
+    if((!defined $self->left_hand_functions || !scalar $self->left_hand_functions->@*) && !defined $self->left_hand_prefix && $self->quote_value) {
         my $column_name = $self->column_name;
 
         if($self->operator && $self->operator ne '=') {
             return ($self->column_name, { $self->operator => $self->value });
         }
         else {
-            return ($self->column_name, $self->get_value);
+            return ($self->column_name, $self->value);
         }
     }
     else {
@@ -199,17 +209,17 @@ sub parse($self) {
         push @left_hand => $function_call_string;
         push @left_hand => $self->sql_operator ? $self->sql_operator : $self->operator ? $self->operator : '=';
 
-        if($self->get_quote_value) {
+        if($self->quote_value) {
             # Either ? or (?, ?, ...., ?)
-            my $placeholders = ref $self->get_value eq 'ARRAY' ? '(' . join(', ', split (//, ('?' x scalar $self->get_value->@*))) . ')' : ' ? ';
+            my $placeholders = ref $self->value eq 'ARRAY' ? '(' . join(', ', split (//, ('?' x scalar $self->value->@*))) . ')' : ' ? ';
             push @left_hand => $placeholders;
 
             my $left_hand = join ' ' => @left_hand;
 
-            return (undef, \[$left_hand, (ref $self->get_value eq 'ARRAY' ? $self->get_value->@* : $self->get_value)]);
+            return (undef, \[$left_hand, (ref $self->value eq 'ARRAY' ? $self->value->@* : $self->value)]);
         }
         else {
-            push @left_hand => $self->get_value;
+            push @left_hand => $self->value;
             my $left_hand = join ' ' => @left_hand;
             return (undef, \[$left_hand]);
         }
