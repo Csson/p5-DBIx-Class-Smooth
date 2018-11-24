@@ -12,5 +12,6 @@ use experimental qw/postderef signatures/;
 
 primary id => IntegerField(auto_increment => 1);
     col title => VarcharField(size => 150, indexed => 1);
+    col published_date => DateField();
 
 1;

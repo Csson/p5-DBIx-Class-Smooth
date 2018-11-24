@@ -281,6 +281,17 @@ my $tests = [
             default_value => 'values',
         },
     },
+    {
+        test => 'EnumField(extra => { thing => 1 }, -list => [qw/here are values/])',
+        result => {
+            data_type => 'enum',
+            is_numeric => 0,
+            extra => {
+                thing => 1,
+                list => [qw/here are values/],
+            },
+        },
+    },
 
     {
         test => 'IntegerField(-unsigned => 1, -whatever => 1)',

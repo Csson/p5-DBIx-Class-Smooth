@@ -12,7 +12,8 @@ __PACKAGE__->load_components(qw/
     Helper::ResultSet::OneRow
     Helper::ResultSet::Bare
     Helper::ResultSet::DateMethods1
-    Smooth::Lookup::NotIn
+    Smooth::Lookup::Operators
+    Smooth::Lookup::DateTime
 /);
 
 1;
