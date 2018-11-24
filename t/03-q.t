@@ -112,64 +112,10 @@ my $tests = [
     },
 ];
 
-
 for my $test (@{ $tests }) {
     next if !length $test->{'test'};
     my $got = eval($test->{'test'})->value;
     is_deeply $got, $test->{'result'}, $test->{'test'} or diag explain $got;
 }
 
-
 done_testing;
-
-__END__
-
-
-
-
-
-####
-
-
-
- [
-   '-and',
-   [
-     '-and',
-     [
-       'last_name',
-       'Bar'
-     ]
-     '-and',
-     [
-       '-and',
-       [
-         'name',
-         {
-           '-like' => '%e'
-         }
-       ]
-       '-and',
-       [
-         '-and',
-         [
-           'name',
-           {
-             '-not_like' => '%o%'
-           }
-         ]
-         '-or',
-         [
-           'name',
-           'Bob',
-           'name',
-           'Rob',
-           'name',
-           'Alice',
-           'name',
-           'Foo'
-         ],
-       ],
-     ],
-   ]
- ]
