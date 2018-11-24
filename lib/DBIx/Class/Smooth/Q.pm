@@ -11,8 +11,7 @@ our $VERSION = '0.0101';
 use Carp qw/croak/;
 use Safe::Isa qw/$_isa/;
 use List::SomeUtils qw/any none/;
-use Data::Dumper::Concise;
-use Mo;
+use Moo;
 use Sub::Exporter::Progressive -setup => {
     exports =>  [qw/Q/],
     groups => {
@@ -27,7 +26,9 @@ use overload
 
 use experimental qw/signatures postderef/;
 
-has value => ();
+has value => (
+    is => 'rw',
+);
 
 sub Q(@args) {
     if(scalar @args == 1 && $args[0]->$_isa('DBIx::Class::Smooth::Q')) {
