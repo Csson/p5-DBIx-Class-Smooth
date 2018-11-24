@@ -131,7 +131,7 @@ sub parse($self) {
             $self->shift_parts;
         }
         else {
-            die "Has no relation <$possible_relation> or that has no column <$possible_column>";
+            confess "Has no relation <$possible_relation> or that has no column <$possible_column>";
         }
     }
 
