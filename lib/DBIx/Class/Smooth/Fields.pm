@@ -197,38 +197,7 @@ sub ForeignKey(%settings) {
     return merge { _smooth_foreign_key => 1 }, \%settings;
 }
 
-
-# data types - integers
-sub _integer_type($type, $settings = {}) {
-    return merge { data_type => $type, is_numeric => 1 }, $settings;
-}
-
-sub BitField(%settings) {
-    return _integer_type(bit => \%settings);
-}
-sub TinyIntField(%settings) {
-    return _integer_type(tinyint => \%settings);
-}
-sub SmallIntField(%settings) {
-    return _integer_type(smallint => \%settings);
-}
-sub MediumIntField(%settings) {
-    return _integer_type(mediumint => \%settings);
-}
-sub IntegerField(%settings) {
-    return _integer_type(integer => \%settings);
-}
-sub BigIntField(%settings) {
-    return _integer_type(bigint => \%settings);
-}
-sub SerialField(%settings) {
-    return _integer_type(serial => \%settings);
-}
-sub BooleanField(%settings) {
-    return _integer_type(boolean => \%settings);
-}
-# / integers
-
+# base fields
 sub NumericField(%settings) {
     return merge { is_numeric => 1 }, \%settings;
 }
@@ -236,65 +205,80 @@ sub NonNumericField(%settings) {
     return merge { is_numeric => 0 }, \%settings;
 }
 
+# data types - integers
+sub BitField(%settings) {
+    return NumericField(data_type => 'bit', %settings);
+}
+sub TinyIntField(%settings) {
+    return NumericField(data_type => 'tinyint', %settings);
+}
+sub SmallIntField(%settings) {
+    return NumericField(data_type => 'smallint', %settings);
+}
+sub MediumIntField(%settings) {
+    return NumericField(data_type => 'mediumint', %settings);
+}
+sub IntegerField(%settings) {
+    return NumericField(data_type => 'integer', %settings);
+}
+sub BigIntField(%settings) {
+    return NumericField(data_type => 'bigint', %settings);
+}
+sub SerialField(%settings) {
+    return NumericField(data_type => 'serial', %settings);
+}
+sub BooleanField(%settings) {
+    return NumericField(data_type => 'boolean', %settings);
+}
 
 # data types - other numericals
 sub DecimalField(%settings) {
-    return _float_and_double(decimal => \%settings);
-}
-
-sub _float_and_double($type, $settings = {}) {
-    return merge { data_type => $type, is_numeric => 1 }, $settings;
+    return NumericField(data_type => 'decimal', %settings);
 }
 sub FloatField(%settings)  {
-    return _float_and_double(float => \%settings);
+    return NumericField(data_type => 'float', %settings);
 }
 sub DoubleField(%settings) {
-    return _float_and_double(double => \%settings);
+    return NumericField(data_type => 'double', %settings);
 }
 
 # data types - strings
-sub _charvar($type, $settings) {
-    return merge { data_type => $type, is_numeric => 0 }, $settings;
-}
 sub VarcharField(%settings) {
-    return _charvar(varchar => \%settings);
+    return NonNumericField(data_type => 'varchar', %settings);
 }
 sub CharField(%settings) {
-    return _charvar(char => \%settings);
+    return NonNumericField(data_type => 'char', %settings);
 }
 sub VarbinaryField(%settings) {
-    return _charvar(varbinary => \%settings);
+    return NonNumericField(data_type => 'varbinary', %settings);
 }
 sub BinaryField(%settings) {
-    return _charvar(binary => \%settings);
+    return NonNumericField(data_type => 'binary', %settings);
 }
 
-sub _blobtext($text, $settings) {
-    return merge { data_type => shift, is_numeric => 0 }, $settings;
-}
 sub TinyTextField(%settings) {
-    return _blobtext(tinytext => \%settings);
+    return NonNumericField(data_type => 'tinytext', %settings);
 }
 sub TextField(%settings) {
-    return _blobtext(text => \%settings);
+    return NonNumericField(data_type => 'text', %settings);
 }
 sub MediumTextField(%settings) {
-    return _blobtext(mediumtext => \%settings);
+    return NonNumericField(data_type => 'mediumtext', %settings);
 }
 sub LongTextField(%settings) {
-    return _blobtext(longtext => \%settings);
+    return NonNumericField(data_type => 'longtext', %settings);
 }
 sub TinyBlobField(%settings) {
-    return _blobtext(tinyblob => \%settings);
+    return NonNumericField(data_type => 'tinyblob', %settings);
 }
 sub BlobField(%settings) {
-    return _blobtext(blob => \%settings);
+    return NonNumericField(data_type => 'blob', %settings);
 }
 sub MediumBlobField(%settings) {
-    return _blobtext(mediumblob => \%settings);
+    return NonNumericField(data_type => 'mediumblob', %settings);
 }
 sub LongBlobField(%settings) {
-    return _blobtext(longblob => \%settings);
+    return NonNumericField(data_type => 'longblob', %settings);
 }
 
 sub EnumField(%settings) {
@@ -302,12 +286,7 @@ sub EnumField(%settings) {
         # all good
     }
     elsif(exists $settings{'-list'}) {
-        if(exists $settings{'extra'}) {
-            $settings{'extra'}{'list'} = delete $settings{'list'};
-        }
-        else {
-            $settings{'extra'} = { list => delete $settings{'list'} };
-        }
+        $settings{'extra'}{'list'} = delete $settings{'list'};
     }
     else {
         croak qq{'enum' expects '-list => [qw/the possible values/]' or 'extra => { list => [qw/the possible values/] }'};
@@ -316,23 +295,20 @@ sub EnumField(%settings) {
 }
 
 # data types - dates and times
-sub _dates_and_times($type, $settings) {
-    return merge { data_type => shift, is_numeric => 0 }, $settings;
-}
 sub DateField(%settings) {
-    return _dates_and_times(date => \%settings);
+    return NonNumericField(data_type => 'date', %settings);
 }
 sub DateTimeField(%settings) {
-    return _dates_and_times(datetime => \%settings);
+    return NonNumericField(data_type => 'datetime', %settings);
 }
 sub TimestampField(%settings) {
-    return _dates_and_times(timestamp => \%settings);
+    return NonNumericField(data_type => 'timestamp', %settings);
 }
 sub TimeField(%settings) {
-    return _dates_and_times(time => \%settings);
+    return NonNumericField(data_type => 'time', %settings);
 }
 sub YearField(%settings) {
-    return _dates_and_times(year => \%settings);
+    return NonNumericField(data_type => 'year', %settings);
 }
 
 1;
