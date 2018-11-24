@@ -11,9 +11,15 @@ use TestFor::DBIx::Class::Smooth::Schema;
 use experimental qw/postderef/;
 
 my $schema = TestFor::DBIx::Class::Smooth::Schema->connect();
+
 if($ENV{'DBIC_SMOOTH_SCHEMA'}) {
     load $ENV{'DBIC_SMOOTH_SCHEMA'};
     $schema = $ENV{'DBIC_SMOOTH_SCHEMA'}->connect();
+}
+else {
+    isa_ok $schema, 'DBIx::Class::Schema';
+    done_testing;
+    exit;
 }
 
 isa_ok $schema, 'DBIx::Class::Schema';
