@@ -50,6 +50,43 @@ use Sub::Exporter::Progressive -setup => {
         TimeField
         YearField
     /],
+    groups => {
+        fields => [qw/
+            Relationship
+            ForeignKey
+            BitField
+            TinyIntField
+            SmallIntField
+            MediumIntField
+            IntegerField
+            BigIntField
+            SerialField
+            BooleanField
+            NumericField
+            NonNumericField
+            DecimalField
+            FloatField
+            DoubleField
+            VarcharField
+            CharField
+            VarbinaryField
+            BinaryField
+            TinyTextField
+            TextField
+            MediumTextField
+            LongTextField
+            TinyBlobField
+            BlobField
+            MediumBlobField
+            LongBlobField
+            EnumField
+            DateField
+            DateTimeField
+            TimestampField
+            TimeField
+            YearField
+        /],
+    },
 };
 
 use experimental qw/postderef signatures/;
