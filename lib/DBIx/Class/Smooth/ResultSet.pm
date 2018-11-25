@@ -8,7 +8,7 @@ package DBIx::Class::Smooth::ResultSet;
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use base 'DBIx::Class::Candy::ResultSet';
+use parent 'DBIx::Class::Candy::ResultSet';
 
 sub base {
     (my $base = caller(2)) =~ s{^(.*?)::Schema::ResultSet::.*}{$1};

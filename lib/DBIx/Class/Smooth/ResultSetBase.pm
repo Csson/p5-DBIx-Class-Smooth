@@ -2,13 +2,13 @@ use 5.20.0;
 use strict;
 use warnings;
 
-package DBIx::Class::Smooth::ResultSet::Base;
+package DBIx::Class::Smooth::ResultSetBase;
 
 # ABSTRACT: Short intro
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use base 'DBIx::Class::ResultSet';
+use parent 'DBIx::Class::ResultSet';
 use List::SomeUtils qw/any/;
 use Safe::Isa qw/$_isa/;
 use DBIx::Class::Smooth::Q;

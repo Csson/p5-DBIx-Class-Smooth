@@ -2,13 +2,13 @@ use 5.20.0;
 use strict;
 use warnings;
 
-package DBIx::Class::Smooth::Result::Base;
+package DBIx::Class::Smooth::ResultBase;
 
 # ABSTRACT: Short intro
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use base 'DBIx::Class::Core';
+use parent 'DBIx::Class::Core';
 
 use experimental qw/signatures/;
 

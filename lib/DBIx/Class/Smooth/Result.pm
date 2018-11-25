@@ -8,7 +8,7 @@ package DBIx::Class::Smooth::Result;
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use base 'DBIx::Class::Candy';
+use parent 'DBIx::Class::Candy';
 use String::CamelCase;
 
 use experimental qw/signatures/;
