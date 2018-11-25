@@ -13,7 +13,7 @@ use Carp qw/confess/;
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__substring($self, $column_name, $value, $params, @rest) {
-    $self->smooth__lookup_util__ensure_value_is_string('substring', $value);
+    $self->smooth__lookup_util__ensure_value_is_scalar('substring', $value);
     $self->smooth__lookup_util__ensure_param_count('substring', $params, { at_least => 1, at_most => 2, regex => qr/^\-?\d+$/ });
 
     if(scalar $params->@* < 1 || scalar $params->@* > 2) {

@@ -8,9 +8,8 @@ package DBIx::Class::Smooth::Lookup::DateTime::datepart;
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use parent 'DBIx::Class::Smooth::ResultSet::Base';
+use parent 'DBIx::Class::Smooth::Lookup::Util';
 use Carp qw/carp confess/;
-use List::SomeUtils qw/any/;
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__datepart($self, $column_name, $value, $params, @rest) {

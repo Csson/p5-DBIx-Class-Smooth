@@ -20,9 +20,9 @@ sub smooth__lookup_util__ensure_value_is_arrayref($self, $lookup_name, $value) {
     }
 }
 
-sub smooth__lookup_util__ensure_value_is_string($self, $lookup_name, $value) {
+sub smooth__lookup_util__ensure_value_is_scalar($self, $lookup_name, $value) {
     if(ref $value) {
-        confess sprintf '<%s> expects a string, got <%s>', $lookup_name, $value;
+        confess sprintf '<%s> expects a scalar, got a <%s>', $lookup_name, ref($value);
     }
 }
 
