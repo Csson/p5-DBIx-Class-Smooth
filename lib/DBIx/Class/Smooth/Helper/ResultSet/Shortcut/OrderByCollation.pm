@@ -8,9 +8,8 @@ package DBIx::Class::Smooth::Helper::ResultSet::Shortcut::OrderByCollation;
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use parent 'DBIx::Class::Smooth::ResultSet::Base';
+use parent 'DBIx::Class::Smooth::ResultSetBase';
 use Carp qw/confess/;
-use List::SomeUtils qw/any/;
 use experimental qw/signatures postderef/;
 
 # This only expects calls like ->order_by_collation('utf8mb4_swedish_ci', 'name', '!other_name')

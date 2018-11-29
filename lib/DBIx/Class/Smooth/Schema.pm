@@ -56,7 +56,7 @@ __END__
 =head1 SYNOPSIS
 
     # in MyApp::Schema, instead of inheriting from DBIx::Class::Schema
-    use base 'DBIx::Class::Smooth::Schema';
+    use parent 'DBIx::Class::Smooth::Schema';
 
 =head1 DESCRIPTION
 

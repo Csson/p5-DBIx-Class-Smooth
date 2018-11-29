@@ -8,7 +8,7 @@ package DBIx::Class::Smooth::Lookup::DateTime::month;
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use parent 'DBIx::Class::Smooth::ResultSet::Base';
+use parent 'DBIx::Class::Smooth::Lookup::DateTime::datepart';
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__month($self, $column_name, $value, @rest) {

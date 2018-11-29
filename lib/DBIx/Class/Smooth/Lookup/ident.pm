@@ -8,7 +8,7 @@ package DBIx::Class::Smooth::Lookup::ident;
 # AUTHORITY
 our $VERSION = '0.0101';
 
-use parent 'DBIx::Class::Smooth::ResultSet::Base';
+use parent 'DBIx::Class::Smooth::Lookup::Util';
 use Carp qw/confess/;
 use experimental qw/signatures postderef/;
 

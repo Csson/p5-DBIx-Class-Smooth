@@ -9,7 +9,7 @@ package DBIx::Class::Smooth::Lookup::Util;
 our $VERSION = '0.0101';
 
 use parent qw/
-    DBIx::Class::Smooth::ResultSet::Base
+    DBIx::Class::Smooth::ResultSetBase
 /;
 use Carp qw/confess/;
 use experimental qw/signatures postderef/;
