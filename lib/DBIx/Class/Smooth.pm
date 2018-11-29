@@ -1,6 +1,8 @@
 package DBIx::Class::Smooth;
 
 use 5.20.0;
+use strict;
+use warnings;
 
 # ABSTRACT: Sugar for DBIx::Class
 # AUTHORITY
