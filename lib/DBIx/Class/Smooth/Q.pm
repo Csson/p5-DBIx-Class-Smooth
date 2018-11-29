@@ -10,7 +10,7 @@ our $VERSION = '0.0101';
 
 use Carp qw/croak/;
 use Safe::Isa qw/$_isa/;
-use List::SomeUtils qw/any none/;
+use List::SomeUtils qw/any/;
 use Moo;
 use Sub::Exporter::Progressive -setup => {
     exports =>  [qw/Q/],

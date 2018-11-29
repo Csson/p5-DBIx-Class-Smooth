@@ -53,11 +53,9 @@ my $tests = [
 ];
 
 for my $test (@{ $tests }) {
-    #next if !length $test->{'test'};
+    next if !length $test->{'test'};
     my $got = eval($test->{'test'});
-    #next if !$schema->resultset('Zone')->result_source->storage->connected;
     is_deeply $got, $test->{'result'}, $test->{'test'} or diag explain $got;
 }
-
 
 done_testing;

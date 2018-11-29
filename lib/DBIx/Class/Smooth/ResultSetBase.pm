@@ -11,10 +11,9 @@ our $VERSION = '0.0101';
 use parent 'DBIx::Class::ResultSet';
 use List::SomeUtils qw/any/;
 use Safe::Isa qw/$_isa/;
+use Carp qw/croak confess/;
 use DBIx::Class::Smooth::Q;
 use DBIx::Class::Smooth::FilterItem;
-use Carp qw/croak confess/;
-use Data::Dumper::Concise;
 use experimental qw/signatures postderef/;
 
 sub _smooth__prepare_for_filter($self, @args) {
