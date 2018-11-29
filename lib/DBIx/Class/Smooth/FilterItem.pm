@@ -11,13 +11,11 @@ our $VERSION = '0.0101';
 use Carp qw/croak confess/;
 use Safe::Isa qw/$_isa/;
 use Scalar::Util qw/blessed/;
-use List::SomeUtils qw/any none/;
-use Data::Dumper::Concise;
 use Moo;
 
 use experimental qw/signatures postderef/;
 
-# parts and resultset (and nothing else) are constructor args
+# parts, resultset and value (and nothing else) are constructor args
 has parts => (
     is => 'rw',
     required => 1,
@@ -76,16 +74,6 @@ sub shift_parts($self, $repeats = 1) {
         return splice $self->parts->@*, 0, $repeats;
     }
 }
-
-#sub set_sql_operator($self, $operator) {
-#    if(defined $self->operator) {
-#        die "Trying to set sql_operator ($operator), but operator (@{[ $self->operator ]}) already set";
-#    }
-#    elsif(defined $self->sql_operator) {
-#        die "Trying to set sql_operator ($operator), but it is already set to (@{[ $self->sql_operator ]})";
-#    }
-#    $self->sql_operator($operator);
-#}
 
 sub set_left_hand_prefix($self, $prefix) {
     if(defined $self->left_hand_prefix) {
