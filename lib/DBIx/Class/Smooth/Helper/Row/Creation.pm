@@ -34,7 +34,6 @@ sub col($self, $name, $definition) {
     $self->add_columns($name => $definition);
 }
 
-
 sub primary($self, $name, $definition) {
     $self->add_columns($name => $definition);
     $self->set_primary_key($self->primary_columns, $name);

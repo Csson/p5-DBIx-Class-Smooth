@@ -203,7 +203,6 @@ sub parse($self) {
             push @left_hand => $placeholders;
 
             my $left_hand = join ' ' => @left_hand;
-
             return (undef, \[$left_hand, (ref $self->value eq 'ARRAY' ? $self->value->@* : $self->value)]);
         }
         else {
