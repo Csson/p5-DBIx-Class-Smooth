@@ -1,5 +1,5 @@
 {
-   "abstract" : "Short intro",
+   "abstract" : "Sugar for DBIx::Class",
    "author" : [
       "Erik Carlsson <info@code301.com>"
    ],
@@ -81,10 +81,9 @@
             "Dist::Zilla::Plugin::Test::Kwalitee::Extra" : "v0.2.1",
             "Dist::Zilla::Plugin::Test::NoTabs" : "0.15",
             "Dist::Zilla::Plugin::Test::ReportPrereqs" : "0.027",
-            "Dist::Zilla::Plugin::Test::Version" : "1.05",
             "Dist::Zilla::Plugin::TestRelease" : "0",
             "Dist::Zilla::Plugin::TravisYML" : "1.15",
-            "Dist::Zilla::Plugin::UploadToStratopan" : "0",
+            "Dist::Zilla::Plugin::UploadToCPAN" : "0",
             "Pod::Elemental::Transformer::List" : "0",
             "Pod::Weaver::Plugin::SingleEncoding" : "0",
             "Pod::Weaver::Plugin::Transformer" : "0",
@@ -104,7 +103,6 @@
             "Test::More" : "0.88",
             "Test::NoTabs" : "1.4",
             "Test::Pod" : "1.41",
-            "Test::Version" : "1",
             "Test::Warnings" : "0.026"
          },
          "suggests" : {
@@ -114,7 +112,22 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.010000"
+            "Carp" : "1.38",
+            "DBIx::Class" : "0",
+            "DBIx::Class::Candy" : "0",
+            "List::SomeUtils" : "0",
+            "List::Util" : "1.45",
+            "Module::Loader" : "0",
+            "Moo" : "0",
+            "Safe::Isa" : "1.000005",
+            "Scalar::Util" : "0",
+            "String::CamelCase" : "0.02",
+            "Sub::Exporter::Progressive" : "0",
+            "Syntax::Keyword::Try" : "0",
+            "boolean" : "0",
+            "experimental" : "0",
+            "parent" : "0",
+            "perl" : "5.020000"
          }
       },
       "test" : {
@@ -122,17 +135,31 @@
             "CPAN::Meta" : "2.120900"
          },
          "requires" : {
+            "DateTime" : "1.05",
             "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
+            "Module::Load" : "0.26",
             "Test::More" : "0.96"
          }
       }
    },
    "provides" : {
+      "DBIx::Class::Smooth" : {
+         "file" : "lib/DBIx/Class/Smooth.pm",
+         "version" : "0.0101"
+      },
       "DBIx::Class::Smooth::Fields" : {
          "file" : "lib/DBIx/Class/Smooth/Fields.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::FilterItem" : {
+         "file" : "lib/DBIx/Class/Smooth/FilterItem.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Flatten::DateTime" : {
+         "file" : "lib/DBIx/Class/Smooth/Flatten/DateTime.pm",
          "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Helper::ResultSet::Shortcut::AddColumn" : {
@@ -141,6 +168,10 @@
       },
       "DBIx::Class::Smooth::Helper::ResultSet::Shortcut::Join" : {
          "file" : "lib/DBIx/Class/Smooth/Helper/ResultSet/Shortcut/Join.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Helper::ResultSet::Shortcut::OrderByCollation" : {
+         "file" : "lib/DBIx/Class/Smooth/Helper/ResultSet/Shortcut/OrderByCollation.pm",
          "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Helper::ResultSet::Shortcut::RemoveColumns" : {
@@ -159,16 +190,80 @@
          "file" : "lib/DBIx/Class/Smooth/Helper/Util.pm",
          "version" : "0.0101"
       },
-      "DBIx::Class::Smooth::Lookup::Like" : {
-         "file" : "lib/DBIx/Class/Smooth/Lookup/Like.pm",
+      "DBIx::Class::Smooth::Lookup::DateTime" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime.pm",
          "version" : "0.0101"
       },
-      "DBIx::Class::Smooth::Lookup::NotIn" : {
-         "file" : "lib/DBIx/Class/Smooth/Lookup/NotIn.pm",
+      "DBIx::Class::Smooth::Lookup::DateTime::datepart" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime/datepart.pm",
          "version" : "0.0101"
       },
-      "DBIx::Class::Smooth::Lookup::Year" : {
-         "file" : "lib/DBIx/Class/Smooth/Lookup/Year.pm",
+      "DBIx::Class::Smooth::Lookup::DateTime::day" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime/day.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::DateTime::hour" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime/hour.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::DateTime::minute" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime/minute.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::DateTime::month" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime/month.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::DateTime::second" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime/second.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::DateTime::year" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/DateTime/year.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators::gt" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators/gt.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators::gte" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators/gte.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators::in" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators/in.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators::like" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators/like.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators::lt" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators/lt.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators::lte" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators/lte.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Operators::not_in" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Operators/not_in.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::Util" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/Util.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::ident" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/ident.pm",
+         "version" : "0.0101"
+      },
+      "DBIx::Class::Smooth::Lookup::substring" : {
+         "file" : "lib/DBIx/Class/Smooth/Lookup/substring.pm",
          "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Q" : {
@@ -179,16 +274,16 @@
          "file" : "lib/DBIx/Class/Smooth/Result.pm",
          "version" : "0.0101"
       },
-      "DBIx::Class::Smooth::Result::Base" : {
-         "file" : "lib/DBIx/Class/Smooth/Result/Base.pm",
+      "DBIx::Class::Smooth::ResultBase" : {
+         "file" : "lib/DBIx/Class/Smooth/ResultBase.pm",
          "version" : "0.0101"
       },
       "DBIx::Class::Smooth::ResultSet" : {
          "file" : "lib/DBIx/Class/Smooth/ResultSet.pm",
          "version" : "0.0101"
       },
-      "DBIx::Class::Smooth::ResultSet::Base" : {
-         "file" : "lib/DBIx/Class/Smooth/ResultSet/Base.pm",
+      "DBIx::Class::Smooth::ResultSetBase" : {
+         "file" : "lib/DBIx/Class/Smooth/ResultSetBase.pm",
          "version" : "0.0101"
       },
       "DBIx::Class::Smooth::Schema" : {
@@ -548,11 +643,6 @@
             "version" : "0.0600"
          },
          {
-            "class" : "Dist::Zilla::Plugin::Test::Version",
-            "name" : "Test::Version",
-            "version" : "1.09"
-         },
-         {
             "class" : "Dist::Zilla::Plugin::Test::Compile",
             "config" : {
                "Dist::Zilla::Plugin::Test::Compile" : {
@@ -649,6 +739,11 @@
          {
             "class" : "Dist::Zilla::Plugin::ConfirmRelease",
             "name" : "ConfirmRelease",
+            "version" : "6.012"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::UploadToCPAN",
+            "name" : "UploadToCPAN",
             "version" : "6.012"
          },
          {
@@ -776,11 +871,6 @@
             "class" : "Dist::Zilla::Plugin::Clean",
             "name" : "Clean",
             "version" : "0.07"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::UploadToStratopan",
-            "name" : "UploadToStratopan",
-            "version" : "0.015"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",

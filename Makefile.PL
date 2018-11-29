@@ -2,26 +2,44 @@
 use strict;
 use warnings;
 
-use 5.010000;
+use 5.020000;
 
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Short intro",
+  "ABSTRACT" => "Sugar for DBIx::Class",
   "AUTHOR" => "Erik Carlsson <info\@code301.com>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
   },
   "DISTNAME" => "DBIx-Class-Smooth",
   "LICENSE" => "perl",
-  "MIN_PERL_VERSION" => "5.010000",
+  "MIN_PERL_VERSION" => "5.020000",
   "NAME" => "DBIx::Class::Smooth",
-  "PREREQ_PM" => {},
+  "PREREQ_PM" => {
+    "Carp" => "1.38",
+    "DBIx::Class" => 0,
+    "DBIx::Class::Candy" => 0,
+    "List::SomeUtils" => 0,
+    "List::Util" => "1.45",
+    "Module::Loader" => 0,
+    "Moo" => 0,
+    "Safe::Isa" => "1.000005",
+    "Scalar::Util" => 0,
+    "String::CamelCase" => "0.02",
+    "Sub::Exporter::Progressive" => 0,
+    "Syntax::Keyword::Try" => 0,
+    "boolean" => 0,
+    "experimental" => 0,
+    "parent" => 0
+  },
   "TEST_REQUIRES" => {
+    "DateTime" => "1.05",
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
     "IO::Handle" => 0,
     "IPC::Open3" => 0,
+    "Module::Load" => "0.26",
     "Test::More" => "0.96"
   },
   "VERSION" => "0.0101",
@@ -32,11 +50,28 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Carp" => "1.38",
+  "DBIx::Class" => 0,
+  "DBIx::Class::Candy" => 0,
+  "DateTime" => "1.05",
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
-  "Test::More" => "0.96"
+  "List::SomeUtils" => 0,
+  "List::Util" => "1.45",
+  "Module::Load" => "0.26",
+  "Module::Loader" => 0,
+  "Moo" => 0,
+  "Safe::Isa" => "1.000005",
+  "Scalar::Util" => 0,
+  "String::CamelCase" => "0.02",
+  "Sub::Exporter::Progressive" => 0,
+  "Syntax::Keyword::Try" => 0,
+  "Test::More" => "0.96",
+  "boolean" => 0,
+  "experimental" => 0,
+  "parent" => 0
 );
 
 

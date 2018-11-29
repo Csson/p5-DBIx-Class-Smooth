@@ -1,23 +1,10 @@
 Revision history for DBIx-Class-Smooth
 
 {{$NEXT}}
- [API Changes]
-
- [Bug Fixes]
-
- [Documentation]
-
- [Enhancements]
-
- [New Features]
-
- [Other Changes]
-
- [Requirements]
+ - First public release
 
  [Stats & Dependency Changes]
 
- [Testing]
 
 0.0100 2018-10-28T10:34:43Z UTC
  - Initial release

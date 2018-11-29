@@ -1,13 +1,30 @@
-# This file was auto-generated from iller.yaml by Dist::Iller on 2018-11-03 23:02:38 UTC.
+# This file was auto-generated from iller.yaml by Dist::Iller on 2018-11-29 20:57:00 UTC.
 
 on runtime => sub {
-    requires 'perl' => '5.010000';
+    requires 'Carp' => '1.38';
+    requires 'DBIx::Class' => '0';
+    requires 'DBIx::Class::Candy' => '0';
+    requires 'List::SomeUtils' => '0';
+    requires 'List::Util' => '1.45';
+    requires 'Module::Loader' => '0';
+    requires 'Moo' => '0';
+    requires 'Safe::Isa' => '1.000005';
+    requires 'Scalar::Util' => '0';
+    requires 'String::CamelCase' => '0.02';
+    requires 'Sub::Exporter::Progressive' => '0';
+    requires 'Syntax::Keyword::Try' => '0';
+    requires 'boolean' => '0';
+    requires 'experimental' => '0';
+    requires 'parent' => '0';
+    requires 'perl' => '5.020000';
 };
 on test => sub {
+    requires 'DateTime' => '1.05';
     requires 'ExtUtils::MakeMaker' => '0';
     requires 'File::Spec' => '0';
     requires 'IO::Handle' => '0';
     requires 'IPC::Open3' => '0';
+    requires 'Module::Load' => '0.26';
     requires 'Test::More' => '0.96';
 };
 on test => sub {
@@ -67,10 +84,9 @@ on develop => sub {
     requires 'Dist::Zilla::Plugin::Test::Kwalitee::Extra' => 'v0.2.1';
     requires 'Dist::Zilla::Plugin::Test::NoTabs' => '0.15';
     requires 'Dist::Zilla::Plugin::Test::ReportPrereqs' => '0.027';
-    requires 'Dist::Zilla::Plugin::Test::Version' => '1.05';
     requires 'Dist::Zilla::Plugin::TestRelease' => '0';
     requires 'Dist::Zilla::Plugin::TravisYML' => '1.15';
-    requires 'Dist::Zilla::Plugin::UploadToStratopan' => '0';
+    requires 'Dist::Zilla::Plugin::UploadToCPAN' => '0';
     requires 'Pod::Elemental::Transformer::List' => '0';
     requires 'Pod::Weaver::Plugin::SingleEncoding' => '0';
     requires 'Pod::Weaver::Plugin::Transformer' => '0';
@@ -90,7 +106,6 @@ on develop => sub {
     requires 'Test::More' => '0.88';
     requires 'Test::NoTabs' => '1.4';
     requires 'Test::Pod' => '1.41';
-    requires 'Test::Version' => '1';
     requires 'Test::Warnings' => '0.026';
 };
 on develop => sub {
