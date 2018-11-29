@@ -13,9 +13,8 @@ use Carp qw/confess/;
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__ident($self, $column, $value, @rest) {
-    if(ref $value) {
-        confess '<ident> expects a string';
-    }
+    $self->smooth__lookup_util__ensure_value_is_scalar('ident', $value);
+
     my($possible_relation, $possible_column) = split /\./, $value;
     $possible_relation = undef if $possible_relation eq 'me';
 

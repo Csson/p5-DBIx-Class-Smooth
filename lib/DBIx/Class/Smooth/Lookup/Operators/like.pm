@@ -12,7 +12,7 @@ use parent 'DBIx::Class::Smooth::Lookup::Util';
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__like($self, $column_name, $value, @rest) {
-    $self->smooth__lookup_util__ensure_value_is_string('like', $value);
+    $self->smooth__lookup_util__ensure_value_is_scalar('like', $value);
 
     return { left_hand_prefix => 'BINARY', sql_operator => 'LIKE', value => $value };
 }

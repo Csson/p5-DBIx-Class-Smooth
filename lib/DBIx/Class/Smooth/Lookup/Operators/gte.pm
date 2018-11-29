@@ -12,7 +12,7 @@ use parent 'DBIx::Class::Smooth::Lookup::Util';
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__gte($self, $column_name, $value, @rest) {
-    $self->smooth__lookup_util__ensure_value_is_string('gte', $value);
+    $self->smooth__lookup_util__ensure_value_is_scalar('gte', $value);
 
     return { sql_operator => '>=', operator => '>=', value => $value };
 }
