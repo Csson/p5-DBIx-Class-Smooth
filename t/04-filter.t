@@ -24,7 +24,6 @@ else {
 
 isa_ok $schema, 'DBIx::Class::Schema';
 
-
 my $tests = [
     {
         test => q{ $schema->resultset('Zone')->_smooth__prepare_for_filter(name__not_in => ['Silmarillion']) },
