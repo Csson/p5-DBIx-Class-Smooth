@@ -1,9 +1,10 @@
-# This file was auto-generated from iller.yaml by Dist::Iller on 2018-11-29 20:57:00 UTC.
+# This file was auto-generated from iller.yaml by Dist::Iller on 2018-11-29 21:09:36 UTC.
 
 on runtime => sub {
     requires 'Carp' => '1.38';
     requires 'DBIx::Class' => '0';
     requires 'DBIx::Class::Candy' => '0';
+    requires 'DBIx::Class::Helpers' => '0';
     requires 'List::SomeUtils' => '0';
     requires 'List::Util' => '1.45';
     requires 'Module::Loader' => '0';
