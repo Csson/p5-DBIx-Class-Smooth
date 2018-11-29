@@ -15,17 +15,32 @@ header:
 prereqs:
   runtime:
     requires:
-      - perl: 5.010000
+      - perl: 5.020000
+      - experimental
+      - parent
+      - boolean
+      - Carp
+      - DBIx::Class
+      - DBIx::Class::Candy
+      - List::SomeUtils
+      - List::Util
+      - Module::Loader
+      - Moo
+      - Safe::Isa
+      - Scalar::Util
+      - String::CamelCase
+      - Sub::Exporter::Progressive
+      - Syntax::Keyword::Try
+
+  test:
+    requires:
+      - DateTime
+      - Module::Load
 
 plugins:
   - +config: Author::CSSON
 
-  - +remove_plugin: UploadToCPAN
-
-  - +plugin: UploadToStratopan
-    repo: TheFirst
-    stack: master
-
+  - +remove_plugin: Test::Version
   - +remove_plugin: PromptIfStale
 ---
 doctype: weaver
