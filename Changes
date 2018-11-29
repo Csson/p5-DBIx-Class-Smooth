@@ -1,10 +1,53 @@
 Revision history for DBIx-Class-Smooth
 
 {{$NEXT}}
- - First public release
+ [API Changes]
+
+ [Bug Fixes]
+
+ [Documentation]
+
+ [Enhancements]
+
+ [New Features]
+
+ [Other Changes]
+
+ [Requirements]
 
  [Stats & Dependency Changes]
 
+ [Testing]
+
+0.0101 2018-11-29T21:20:16Z UTC
+ - First public release
+
+ [Stats & Dependency Changes]
+ - 49 files changed, 1529 insertions(+), 121 deletions(-)
+ - (run req) + Carp 1.38
+ - (run req) + DBIx::Class (any)
+ - (run req) + DBIx::Class::Candy (any)
+ - (run req) + DBIx::Class::Helpers (any)
+ - (run req) + List::SomeUtils (any)
+ - (run req) + List::Util 1.45
+ - (run req) + Module::Loader (any)
+ - (run req) + Moo (any)
+ - (run req) + Safe::Isa 1.000005
+ - (run req) + Scalar::Util (any)
+ - (run req) + String::CamelCase 0.02
+ - (run req) + Sub::Exporter::Progressive (any)
+ - (run req) + Syntax::Keyword::Try (any)
+ - (run req) + boolean (any)
+ - (run req) + experimental (any)
+ - (run req) + parent (any)
+ - (run req) ~ perl 5.010000 --> 5.020000
+ - (test req) + DateTime 1.05
+ - (test req) + Module::Load 0.26
+ - (dev req) + Dist::Zilla::Plugin::UploadToCPAN (any)
+ - (dev req) - Dist::Zilla::Plugin::PromptIfStale
+ - (dev req) - Dist::Zilla::Plugin::Test::Version
+ - (dev req) - Dist::Zilla::Plugin::UploadToStratopan
+ - (dev req) - Test::Version
 
 0.0100 2018-10-28T10:34:43Z UTC
  - Initial release
