@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Fields;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0101';
+our $VERSION = '0.0102';
 
 use Carp qw/croak/;
 use List::Util qw/uniq/;

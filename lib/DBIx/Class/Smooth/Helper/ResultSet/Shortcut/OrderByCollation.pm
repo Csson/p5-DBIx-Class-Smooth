@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Helper::ResultSet::Shortcut::OrderByCollation;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0101';
+our $VERSION = '0.0102';
 
 use parent 'DBIx::Class::Smooth::ResultSetBase';
 use Carp qw/confess/;

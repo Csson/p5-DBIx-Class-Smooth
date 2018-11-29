@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Lookup::DateTime::minute;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0101';
+our $VERSION = '0.0102';
 
 use parent 'DBIx::Class::Smooth::Lookup::DateTime::datepart';
 use experimental qw/signatures postderef/;
