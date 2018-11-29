@@ -90,7 +90,7 @@ sub do_or($self, $other, $swap) {
 
     if($self_value->[0] eq '-and' && scalar $self_value->[1]->@* == 2) {
         $self_value = $self_value->[1];
-    } 
+    }
     if($other_value->[0] eq '-and' && scalar $other_value->[1]->@* == 2) {
         $other_value = $other_value->[1];
     }

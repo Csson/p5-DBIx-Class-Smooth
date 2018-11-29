@@ -64,7 +64,7 @@ sub _smooth__prepare_for_filter($self, @args) {
                 }
                 else {
                     push $prepared_args->@* => $possible_value;
-                }   
+                }
                 $i += 2;
             }
         }

@@ -24,7 +24,7 @@ sub order_by_collation($self, $collation, @column_names) {
     return $self->search(undef, { order_by => \$sql_order_by_args });
 }
 
-# This is based on DBIx::Class::Helper::ResultSet::Shortcut::OrderByMagic::order_by 
+# This is based on DBIx::Class::Helper::ResultSet::Shortcut::OrderByMagic::order_by
 sub smooth__helper__orderbycollation__prepare_for_sql($self, $collation, $column_name) {
     my $direction = 'ASC';
     if(substr($column_name, 0, 1) eq '!') {
