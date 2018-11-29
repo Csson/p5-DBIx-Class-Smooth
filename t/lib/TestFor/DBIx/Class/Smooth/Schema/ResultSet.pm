@@ -5,7 +5,7 @@ package TestFor::DBIx::Class::Smooth::Schema::ResultSet;
 
 our $VERSION = '0.0001';
 
-use base 'DBIx::Class::Smooth::ResultSet';
+use parent 'DBIx::Class::Smooth::ResultSet';
 
 sub base { $_[1] || 'TestFor::DBIx::Class::Smooth::Schema::ResultSetBase' }
 

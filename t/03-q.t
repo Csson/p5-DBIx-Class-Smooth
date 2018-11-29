@@ -5,7 +5,6 @@ use Test::More;
 use if $ENV{'AUTHOR_TESTING'}, 'Test::Warnings';
 
 use DBIx::Class::Smooth::Q;
-use Data::Dumper::Concise;
 use experimental qw/postderef/;
 
 my $tests = [

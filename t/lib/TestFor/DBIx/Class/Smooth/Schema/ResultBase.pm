@@ -5,7 +5,7 @@ package TestFor::DBIx::Class::Smooth::Schema::ResultBase;
 
 our $VERSION = '0.0001';
 
-use base 'DBIx::Class::Smooth::ResultBase';
+use parent 'DBIx::Class::Smooth::ResultBase';
 use experimental qw/postderef signatures/;
 
 __PACKAGE__->load_components(qw/

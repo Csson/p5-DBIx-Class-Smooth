@@ -5,7 +5,7 @@ package TestFor::DBIx::Class::Smooth::Schema::ResultSetBase;
 
 our $VERSION = '0.0001';
 
-use base 'DBIx::Class::Smooth::ResultSetBase';
+use parent 'DBIx::Class::Smooth::ResultSetBase';
 
 __PACKAGE__->load_components(qw/
     Helper::ResultSet

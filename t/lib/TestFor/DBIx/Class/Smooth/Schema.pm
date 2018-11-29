@@ -9,7 +9,7 @@ our $VERSION = '0.0001';
 
 sub schema_version { 1 }
 
-use base 'DBIx::Class::Smooth::Schema';
+use parent 'DBIx::Class::Smooth::Schema';
 use experimental qw/postderef signatures/;
 
 __PACKAGE__->load_namespaces;
