@@ -1,5 +1,12 @@
-# PODNAME: DBIx::Class::Smooth
+package DBIx::Class::Smooth;
+
+use 5.20.0;
+
 # ABSTRACT: Sugar for DBIx::Class
+# AUTHORITY
+our $VERSION = '0.0101';
+
+1;
 
 =pod
 
