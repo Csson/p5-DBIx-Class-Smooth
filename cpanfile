@@ -18,6 +18,7 @@ on runtime => sub {
     requires 'experimental' => '0';
     requires 'parent' => '0';
     requires 'perl' => '5.020000';
+    requires 'Data::Dumper::Concise' => '0';
 };
 on test => sub {
     requires 'DateTime' => '1.05';
