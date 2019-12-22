@@ -4,6 +4,7 @@ Revision history for DBIx-Class-Smooth
  [API Changes]
 
  [Bug Fixes]
+ - Removed a leftover Dumper debug statement. Thanks to MANWAR for the heads up.
 
  [Documentation]
 
