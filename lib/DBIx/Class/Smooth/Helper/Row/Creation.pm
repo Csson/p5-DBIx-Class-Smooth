@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Helper::Row::Creation;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0102';
+our $VERSION = '0.0103';
 
 use parent 'DBIx::Class::Row';
 use String::CamelCase;

@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Lookup::Util;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0102';
+our $VERSION = '0.0103';
 
 use parent qw/
     DBIx::Class::Smooth::ResultSetBase

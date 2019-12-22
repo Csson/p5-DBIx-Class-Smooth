@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Schema;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0102';
+our $VERSION = '0.0103';
 
 use parent 'DBIx::Class::Schema';
 use Carp qw/croak/;
