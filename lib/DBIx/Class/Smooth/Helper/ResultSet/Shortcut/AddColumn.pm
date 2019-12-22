@@ -27,10 +27,6 @@ sub add_column($self, @args) {
         confess "add_column given an un-even number of arguments"
     }
     my %args = @args;
-    use Data::Dumper::Concise;
-    say '((((';
-    say Dumper \%args;
-    say ')))';
 
     my %plus_select_args = ();
     my @plus_as_args = ();
