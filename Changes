@@ -4,7 +4,6 @@ Revision history for DBIx-Class-Smooth
  [API Changes]
 
  [Bug Fixes]
- - Removed a leftover Dumper debug statement. Thanks to MANWAR for the heads up.
 
  [Documentation]
 
@@ -19,6 +18,15 @@ Revision history for DBIx-Class-Smooth
  [Stats & Dependency Changes]
 
  [Testing]
+
+0.0102 2019-12-22T23:04:36Z UTC
+ [Bug Fixes]
+ - Removed a leftover Dumper debug statement. Thanks to MANWAR for the
+   heads up.
+
+ [Stats & Dependency Changes]
+ - 36 files changed, 36 insertions(+), 40 deletions(-)
+ - (dev sug) ~ Dist::Iller::Config::Author::CSSON 0.0322 --> 0.0323
 
 0.0101 2018-11-29T21:20:16Z UTC
  - First public release
