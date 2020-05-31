@@ -6,6 +6,7 @@ Revision history for DBIx-Class-Smooth
  [Bug Fixes]
 
  [Documentation]
+ - Documentation typos in ::ResultBase fixed
 
  [Enhancements]
 
