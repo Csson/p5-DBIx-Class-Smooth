@@ -56,7 +56,7 @@ __END__
 =head1 SYNOPSIS
 
     # in MyApp::Schema::Result::YourResultClass, instead of inheriting from DBIx::Class::Core
-    use base 'DBIx::Class::Sweeten::Result::Base';
+    use base 'DBIx::Class::Smooth::Result::Base';
 
     # DBIx::Class::Candy is always nice
     use DBIx::Class::Candy;
