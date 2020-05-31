@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Helper::ResultSet::Shortcut::AddColumn;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0103';
+our $VERSION = '0.0104';
 
 use parent 'DBIx::Class::Helper::ResultSet::Shortcut::AddColumns';
 use Carp qw/confess/;

@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::ResultSetBase;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0103';
+our $VERSION = '0.0104';
 
 use parent 'DBIx::Class::ResultSet';
 use List::SomeUtils qw/any/;
