@@ -6,7 +6,7 @@ use warnings;
 
 # ABSTRACT: Sugar for DBIx::Class
 # AUTHORITY
-our $VERSION = '0.0104';
+our $VERSION = '0.0105';
 
 1;
 

@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Lookup::ident;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0104';
+our $VERSION = '0.0105';
 
 use parent 'DBIx::Class::Smooth::Lookup::Util';
 use Carp qw/confess/;

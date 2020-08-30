@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Lookup::Operators;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0104';
+our $VERSION = '0.0105';
 
 use parent qw/
     DBIx::Class::Smooth::Lookup::Operators::gt
