@@ -56,10 +56,7 @@ __END__
 =head1 SYNOPSIS
 
     # in MyApp::Schema::Result::YourResultClass, instead of inheriting from DBIx::Class::Core
-    use base 'DBIx::Class::Smooth::Result::Base';
-
-    # DBIx::Class::Candy is always nice
-    use DBIx::Class::Candy;
+    use parent 'DBIx::Class::Smooth::Result::Base';
 
     column last_name => {
         data_type => 'varchar',
