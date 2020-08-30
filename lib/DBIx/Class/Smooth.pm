@@ -88,7 +88,7 @@ our $VERSION = '0.0104';
     #* In the Book resultset
     package Your::Schema::ResultSet::Book;
 
-    use Turf::Schema::ResultSet -components => [qw/.../];
+    use Your::Schema::ResultSet -components => [qw/.../];
     use DBIx::Class::Smooth::Q;
 
     sub get_books_by_year($self, $year) {
