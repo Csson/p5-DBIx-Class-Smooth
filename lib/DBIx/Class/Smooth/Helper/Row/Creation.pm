@@ -26,7 +26,6 @@ export_methods [qw/
     belongs
     unique
     primary_belongs
-    ManyToMany
 /];
 
 state $module_loader = Module::Loader->new;
