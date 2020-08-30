@@ -103,12 +103,18 @@ our $VERSION = '0.0104';
     my $books = $schema->Book->get_books_by_year(2018);
 
 
-=head1 DESCRIPTION
-
-DBIx::Class::Smooth is a sugar layer for L<DBIx::Class>, partially built on top of L<DBIx::Class::Candy> and L<DBIx::Class::Helpers>.
-
 =head1 STATUS
 
 This is experimental, and an early release at that. I'm using this in a couple of non-critical personal projects, so it hasn't seen heavy use. It would not be surprising if there are bad bugs. Also, it's only been tested on MySQL/MariaDB.
 
-More documentation to follow.
+Documentation is expected to improve with time.
+
+=head1 DESCRIPTION
+
+DBIx::Class::Smooth is a sugar layer for L<DBIx::Class>, partially built on top of L<DBIx::Class::Candy> and L<DBIx::Class::Helpers>.
+
+=head1 MORE DOCUMENTATION
+
+for :list
+* L<DBIx::Class::Smooth::Schema>
+* L<DBIx::Class::Smooth::Fields>
