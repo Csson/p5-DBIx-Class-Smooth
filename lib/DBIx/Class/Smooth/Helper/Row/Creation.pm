@@ -13,6 +13,7 @@ use String::CamelCase;
 use Module::Loader;
 use Syntax::Keyword::Try;
 use Carp qw/croak/;
+
 use DBIx::Class::Candy::Exports;
 use DBIx::Class::Smooth::Helper::Util qw/result_source_to_class result_source_to_relation_name /;
 
