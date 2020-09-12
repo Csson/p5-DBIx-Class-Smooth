@@ -10,7 +10,7 @@ use experimental qw/postderef signatures/;
 
 __PACKAGE__->load_components(qw/
     Helper::Row::RelationshipDWIM
-    Smooth::Helper::Row::Creation
+    Smooth::Helper::Row::Definition
     Smooth::Helper::Row::JoinTable
 /);
 
