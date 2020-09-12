@@ -15,6 +15,8 @@ use experimental qw/signatures postderef/;
 sub smooth__lookup__ident($self, $column, $value, @rest) {
     $self->smooth__lookup_util__ensure_value_is_scalar('ident', $value);
 
+    return { operator => '-ident', value => $self->result_source->storage->sql_maker->_quote($value) };
+
     my($possible_relation, $possible_column) = split /\./, $value;
     $possible_relation = undef if $possible_relation eq 'me';
 
@@ -28,7 +30,7 @@ sub smooth__lookup__ident($self, $column, $value, @rest) {
             }
         }
         else {
-            confess "<ident> got '$value', relation '$possible_relation' does not exist in the current result source";
+            confess "<ident> got '$value', relation '$possible_relation' does not exist in the current result source (@{[ $self->result_class ]})";
         }
     }
     else {
@@ -37,7 +39,7 @@ sub smooth__lookup__ident($self, $column, $value, @rest) {
             $value = $self->current_source_alias . ".$possible_column";
         }
         else {
-            confess "<ident> got '$value', column '$possible_column' does not exist in the current result source"
+            confess "<ident> got '$value', column '$possible_column' does not exist in the current result source (@{[ $self->result_class ]})";
         }
     }
 
