@@ -2,7 +2,7 @@ use 5.20.0;
 use strict;
 use warnings;
 
-package DBIx::Class::Smooth::Helper::Row::Creation;
+package DBIx::Class::Smooth::Helper::Row::Definition;
 
 # ABSTRACT: Short intro
 # AUTHORITY
