@@ -14,6 +14,8 @@ __PACKAGE__->load_components(qw/
     Helper::ResultSet::DateMethods1
     Smooth::Lookup::Operators
     Smooth::Lookup::DateTime
+    Smooth::Lookup::substring
+    Smooth::Lookup::ident
 /);
 
 use experimental qw/postderef signatures/;
