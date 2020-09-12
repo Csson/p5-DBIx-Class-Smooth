@@ -13,9 +13,9 @@ use Carp qw/carp confess/;
 use experimental qw/signatures postderef/;
 
 sub smooth__lookup__datepart($self, $column_name, $value, $params, @rest) {
-    $self->smooth__lookup_util__ensure_param_count('substring', $params, { at_least => 1, at_most => 1, regex => qr/^[a-z_]+$/i });
-
     my $datepart = $params->[0];
+    $self->smooth__lookup_util__ensure_param_count($datepart, $params, { at_least => 1, at_most => 1, regex => qr/^[a-z_]+$/i });
+
 
     local $SIG{'__WARN__'} = sub ($message) {
         if($message =~ m{uninitialized value within %part_map}) {
