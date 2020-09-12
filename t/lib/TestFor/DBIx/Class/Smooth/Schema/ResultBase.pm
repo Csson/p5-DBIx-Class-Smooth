@@ -18,4 +18,6 @@ sub db {
     return shift->result_source->schema;
 }
 
+sub default_result_namespace { 'TestFor::DBIx::Class::Smooth::Schema::Result' }
+
 1;
