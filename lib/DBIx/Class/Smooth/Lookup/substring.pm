@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Lookup::substring;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0105';
+our $VERSION = '0.0106';
 
 use parent 'DBIx::Class::Smooth::Lookup::Util';
 use Carp qw/confess/;

@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Helper::ResultSet::Shortcut::Join;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0105';
+our $VERSION = '0.0106';
 
 use parent 'DBIx::Class::Smooth::ResultSetBase';
 use Carp qw/confess/;

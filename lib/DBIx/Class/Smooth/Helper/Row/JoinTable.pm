@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Helper::Row::JoinTable;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0105';
+our $VERSION = '0.0106';
 
 use parent 'DBIx::Class::Row';
 use String::CamelCase;
