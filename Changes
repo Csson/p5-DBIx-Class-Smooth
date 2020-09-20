@@ -4,20 +4,26 @@ Revision history for DBIx-Class-Smooth
  [API Changes]
 
  [Bug Fixes]
+ * Fixed ident lookup
+ * Fixed like operator
 
  [Documentation]
 
  [Enhancements]
+ * Add ability to transverse beyond one relationship (->filter(firstrel__secondrel__thirdrel__property=...))
 
  [New Features]
 
- [Other Changes]
+ [Breaking Changes]
+ * Renamed ::Helper::Row::Creation to ::Helper::Row::Definition
 
  [Requirements]
 
  [Stats & Dependency Changes]
 
  [Testing]
+ * Started using Test::DBIx::Class
+ * Improved various tests
 
 0.0104 2020-08-30T14:15:20Z UTC
  [Documentation]
