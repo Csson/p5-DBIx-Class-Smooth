@@ -82,4 +82,16 @@ sub filterattr($self, %args) {
     return $self->search({}, \%args);
 }
 
+# $rs->annotate(point_x => X('location'));
+sub annotate($self, $getter_name, $function_structure, $as = undef) {
+    if ($as) {
+        $function_structure->{'-as'} = $as;
+    }
+    my $structure = {
+        '+select' => [$function_structure],
+        '+as' => [$getter_name],
+    };
+    return $self->search({}, $structure);
+}
+
 1;
