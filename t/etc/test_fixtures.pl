@@ -8,12 +8,19 @@
                 name => 'Sweden',
                 created_date_time => '2020-08-20 12:32:42',
             },
-          ]
+          ],
+          Publisher => [
+            {
+                id => 1,
+                name => 'The Iceland Publisher',
+            },
+          ],
         }
     },
-    resultsets => [
-        'Author',
-        'Book',
-        'Country',
-    ]
+    resultsets => [qw/
+        Author
+        Book
+        Country
+        Publisher
+    /]
 };
