@@ -10,6 +10,8 @@ Revision history for DBIx-Class-Smooth
  [Enhancements]
 
  [New Features]
+ - Added annotate() to ResultSetBase.
+ - Started ::Functions
 
  [Other Changes]
 
