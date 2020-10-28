@@ -19,6 +19,10 @@ Revision history for DBIx-Class-Smooth
 
  [Testing]
 
+0.0107 2020-10-28T19:13:27Z UTC
+ [Stats & Dependency Changes]
+ - 37 files changed, 37 insertions(+), 37 deletions(-)
+
 0.0106 2020-10-28T18:59:43Z UTC
  [New Features]
  - Added annotate() to ResultSetBase.
