@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::FilterItem;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0107';
+our $VERSION = '0.0108';
 
 use Carp qw/carp croak confess/;
 use Safe::Isa qw/$_isa/;

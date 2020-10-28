@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Q;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0107';
+our $VERSION = '0.0108';
 
 use Carp qw/croak/;
 use Safe::Isa qw/$_isa/;

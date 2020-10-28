@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Helper::Util;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0107';
+our $VERSION = '0.0108';
 
 
 use Sub::Exporter::Progressive -setup => {

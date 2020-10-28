@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Lookup::DateTime::year;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0107';
+our $VERSION = '0.0108';
 
 use parent 'DBIx::Class::Smooth::Lookup::DateTime::datepart';
 use experimental qw/signatures postderef/;
