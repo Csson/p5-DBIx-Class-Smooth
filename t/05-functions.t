@@ -23,10 +23,25 @@ my $mysqld = Test::mysqld->new(auto_start => undef) or plan skip_all => $Test::m
 
 fixtures_ok 'basic';
 
-subtest ascii_ord => sub {
-    my $ascii_for_S = 83;
-    is Country->annotate(ascii => Ascii('name'))->filter(id => 1)->first->get_column('ascii'), $ascii_for_S;
-    is Country->annotate(chr => Char(Ascii('name')))->filter(id => 1)->first->get_column('chr'), 'S';
+subtest group_1 => sub {
+    my $ascii_for_D = 68;
+    is Country->annotate_get(ascii => Ascii('name'), 2), $ascii_for_D, 'ascii 1';
+    is Country->annotate_get(ascii => Ascii(\'Denmark')), $ascii_for_D, 'ascii 2';
+    #is Country->annotate_get(char => Char(Ascii('name'))), 'S';
+    #is Country->annotate_get(chr => CharLength(Char(\"x'65'", { using => 'utf8' }))), 1 or diag explain Char(\"x'65'", { using => 'utf8' });
+    is Country->annotate_get(charlength => CharLength('name')), 6;
+    is Country->annotate_get(ascii_charlength => CharLength(Ascii(\'D'))), 2 or diag explain CharLength(Ascii(\'D'));
+    is Country->annotate_get(ascii_charlength => CharLength(Ascii('name'))), 2 or diag explain CharLength(Ascii('name'));
+
+    is Country->annotate_get(concat => Concat('id', 'name')), '1Sweden';
+    is Country->annotate_get(concat => Concat('id', 'name', \'_', \'Sweden')), '1Sweden_Sweden';
+
+    is Country->annotate_get(concat_ws => ConcatWS(\', ', 'id', 'name')), '1, Sweden';
+    is Country->annotate_get(concat_ws => ConcatWS('id', 'name', 'created_date_time')), 'Sweden12020-08-20 12:32:42';
+
+    is Country->annotate_get(element => Elt('id', \'S', \'w', \'e')), 'S';
+    is Country->annotate_get(exports => ExportSet(\'3', \'y', \'n', 'id', \'4')), 'y1y1n1n';
+    is Country->annotate_get(export_length => CharLength(ExportSet(\'3', \'y', \'n', 'id', \'4'))), 7 or diag explain CharLength(ExportSet(\'3', \'y', \'n', 'id', \'4'));
 };
 
 
