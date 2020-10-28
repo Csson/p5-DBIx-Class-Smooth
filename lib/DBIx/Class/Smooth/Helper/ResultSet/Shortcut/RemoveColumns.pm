@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Helper::ResultSet::Shortcut::RemoveColumns;
 
 # ABSTRACT: Short intro
 # AUTHORITY
-our $VERSION = '0.0106';
+our $VERSION = '0.0107';
 
 use parent 'DBIx::Class::Helper::ResultSet::RemoveColumns';
 use Carp qw/carp/;
