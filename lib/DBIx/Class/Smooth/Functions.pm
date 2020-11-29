@@ -6,7 +6,7 @@ package DBIx::Class::Smooth::Functions;
 
 # ABSTRACT: Specify columns
 # AUTHORITY
-our $VERSION = '0.0108';
+our $VERSION = '0.0109';
 
 use Carp qw/croak/;
 use List::Util qw/uniq/;
