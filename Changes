@@ -10,7 +10,6 @@ Revision history for DBIx-Class-Smooth
  [Enhancements]
 
  [New Features]
- - Added ::Functions::Hex
 
  [Other Changes]
 
@@ -19,6 +18,13 @@ Revision history for DBIx-Class-Smooth
  [Stats & Dependency Changes]
 
  [Testing]
+
+0.0108 2020-11-29T19:43:55Z UTC
+ [New Features]
+ - Added ::Functions::Hex
+
+ [Stats & Dependency Changes]
+ - 38 files changed, 43 insertions(+), 37 deletions(-)
 
 0.0107 2020-10-28T19:13:27Z UTC
  [Stats & Dependency Changes]
