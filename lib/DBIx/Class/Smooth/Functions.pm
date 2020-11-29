@@ -23,6 +23,7 @@ use Sub::Exporter::Progressive -setup => {
         ConcatWS
         Elt
         ExportSet
+        Hex
         Substring
     /]
 };
@@ -95,6 +96,8 @@ sub ConcatWS($sep, @list) { return all_is_voc concat_ws => $sep, @list; }
 sub Elt($index, @list) { return all_is_voc elt => $index, @list; }
 
 sub ExportSet($bits, $on, $off, $separator, $number_of_bits) { return all_is_voc export_set => drop_last_if_undef(drop_last_if_undef $bits, $on, $off, $separator, $number_of_bits); }
+
+sub Hex($voc) { return first_is_voc hex => $voc; }
 
 sub Substring($voc, $pos, $length = undef) { return first_is_voc substring => drop_last_if_undef($voc, $pos, $length); }
 
