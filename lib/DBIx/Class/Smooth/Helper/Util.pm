@@ -20,13 +20,15 @@ use Sub::Exporter::Progressive -setup => {
 };
 use experimental qw/signatures/;
 
-sub result_source_to_relation_name($result_source_name, $plural = 0) {
+sub result_source_to_relation_name($result_source_name, $plural = 0, $options = {}) {
     my $relation_name = clean_source_name($result_source_name);
+    my $prefix = $options->{'prefix'} || '';
+    my $suffix = $options->{'suffix'} || '';
 
     $relation_name =~ s{::}{_}g;
     my @parts = split /\|/, $relation_name, 2;
     $relation_name = $parts[-1];
-    $relation_name = String::CamelCase::decamelize($relation_name);
+    $relation_name = String::CamelCase::decamelize($prefix . $relation_name . $suffix);
 
     return $relation_name.($plural && substr ($relation_name, -1, 1) ne 's' ? 's' : '');
 }

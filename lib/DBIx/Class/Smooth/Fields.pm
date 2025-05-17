@@ -25,6 +25,10 @@ use Sub::Exporter::Progressive -setup => {
         BigIntField
         SerialField
         BooleanField
+        PointField
+        MultiPointField
+        PolygonField
+        MultiPolygonField
         NumericField
         NonNumericField
         DecimalField
@@ -60,6 +64,10 @@ use Sub::Exporter::Progressive -setup => {
             BigIntField
             SerialField
             BooleanField
+            PointField
+            MultiPointField
+            PolygonField
+            MultiPolygonField
             NumericField
             NonNumericField
             DecimalField
@@ -309,6 +317,19 @@ sub YearField(%settings) {
     return NonNumericField(data_type => 'year', %settings);
 }
 
+sub PointField(%settings) {
+    return NonNumericField(data_type => 'point', %settings);
+}
+sub MultiPointField(%settings) {
+    return NonNumericField(data_type => 'multipoint', %settings);
+}
+sub PolygonField(%settings) {
+    return NonNumericField(data_type => 'polygon', %settings);
+}
+sub MultiPolygonField(%settings) {
+    return NonNumericField(data_type => 'multipolygon', %settings);
+}
+
 1;
 
 __END__
@@ -376,7 +397,7 @@ These will all have C<is_numeric> set to C<0>, in addition to their respective C
     TinyBlobField    tinyblob
     BlobField        blob
     MediumBlobField  mediumblob
-    LongBlobField    longblod
+    LongBlobField    longblob
     EnumField        enum
     DateField        date
     DateTimeField    datetime
@@ -384,7 +405,7 @@ These will all have C<is_numeric> set to C<0>, in addition to their respective C
     TimeField        time
     YearField        year
 
-For C<EnumField>, you can do C<EnumField(-list => [qw/one to three/])> instead of C<EnumField(extra => { list => [qw/one two three/] })>.
+For C<EnumField>, you can do C<EnumField(-list => [qw/one two three/])> instead of C<EnumField(extra => { list => [qw/one two three/] })>.
 
 =head1 SEE ALSO
 

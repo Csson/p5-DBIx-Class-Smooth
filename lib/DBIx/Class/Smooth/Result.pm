@@ -1,4 +1,4 @@
-use 5.20.0;
+use 5.40.0;
 use strict;
 use warnings;
 
@@ -19,7 +19,7 @@ sub base {
     return $_[1] || "${base}::Schema::Result";
 }
 sub autotable    { 1 }
-sub perl_version { 20 }
+sub perl_version { 40 }
 sub experimental { [ ] }
 
 sub gen_table($self, $resultclass, $version) {

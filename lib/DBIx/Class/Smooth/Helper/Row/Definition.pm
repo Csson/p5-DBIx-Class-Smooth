@@ -30,7 +30,12 @@ export_methods [qw/
 
 state $module_loader = Module::Loader->new;
 
-sub col($self, $name, $definition) {
+sub col($self, $name, $definition, @rest) {
+    if (scalar @rest) {
+        say $name;
+        say $definition,
+        die join ',' => @rest;
+    }
     $self->add_columns($name => $definition);
 }
 
@@ -89,6 +94,9 @@ sub belongs($self, $other_source, $relation_name_or_definition, $definition_or_u
             if(exists $primary_key_col->{ $attr }) {
                 $definition->{ $attr } = $primary_key_col->{ $attr };
             }
+        }
+        if ($primary_key_col->{'extra'} && $primary_key_col->{'extra'}{'unsigned'}) {
+            $definition->{'extra'}{'unsigned'} = $primary_key_col->{'extra'}{'unsigned'};
         }
     }
 

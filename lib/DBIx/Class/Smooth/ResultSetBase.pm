@@ -16,6 +16,10 @@ use DBIx::Class::Smooth::Q;
 use DBIx::Class::Smooth::FilterItem;
 use experimental qw/signatures postderef/;
 
+sub db {
+    return shift->result_source->schema;
+}
+
 sub _smooth__prepare_for_filter($self, @args) {
     my @qobjs = grep { $_->$_isa('DBIx::Class::Smooth::Q') } @args;
     if(scalar @qobjs) {
@@ -80,6 +84,20 @@ sub filter($self, @args) {
 
 sub filterattr($self, %args) {
     return $self->search({}, \%args);
+}
+
+sub get($self, @args) {
+    my $result = $self->filter(@args);
+    my $first = $result->first;
+
+    my $result_class = $result->result_class;
+    if (!$first) {
+        die $self->db->exception_factory->generate_does_not_exist($result_class);
+    }
+    if ($result->count > 1) {
+        die $self->db->exception_factory->generate_multiple_objects_returned($result_class);
+    }
+    return $first;
 }
 
 # $rs->annotate(point_x => X('location'));

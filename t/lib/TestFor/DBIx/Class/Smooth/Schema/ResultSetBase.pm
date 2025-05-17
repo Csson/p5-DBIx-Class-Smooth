@@ -8,10 +8,7 @@ our $VERSION = '0.0001';
 use parent 'DBIx::Class::Smooth::ResultSetBase';
 
 __PACKAGE__->load_components(qw/
-    Helper::ResultSet
-    Helper::ResultSet::OneRow
-    Helper::ResultSet::Bare
-    Helper::ResultSet::DateMethods1
+    
     Smooth::Lookup::Operators
     Smooth::Lookup::DateTime
     Smooth::Lookup::substring
@@ -22,3 +19,9 @@ __PACKAGE__->load_components(qw/
 use experimental qw/postderef signatures/;
 
 1;
+__END__
+
+Helper::ResultSet
+    Helper::ResultSet::OneRow
+    Helper::ResultSet::Bare
+    Helper::ResultSet::DateMethods1

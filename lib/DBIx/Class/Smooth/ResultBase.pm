@@ -44,7 +44,7 @@ sub sqlt_deploy_hook($self, $table) {
             $table->add_index(name => $index_name, fields => $indices->{ $index_name });
         }
     }
-    $self->next::method(@_) if $self->next::can;
+    $self->next::method($table) if $self->next::can;
 }
 
 1;

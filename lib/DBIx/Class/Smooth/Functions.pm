@@ -25,6 +25,8 @@ use Sub::Exporter::Progressive -setup => {
         ExportSet
         Hex
         Substring
+        X
+        Y
     /]
 };
 
@@ -100,6 +102,10 @@ sub ExportSet($bits, $on, $off, $separator, $number_of_bits) { return all_is_voc
 sub Hex($voc) { return first_is_voc hex => $voc; }
 
 sub Substring($voc, $pos, $length = undef) { return first_is_voc substring => drop_last_if_undef($voc, $pos, $length); }
+
+sub X($voc) { return first_is_voc x => $voc; }
+
+sub Y($voc) { return first_is_voc y => $voc; }
 
 =pod
 

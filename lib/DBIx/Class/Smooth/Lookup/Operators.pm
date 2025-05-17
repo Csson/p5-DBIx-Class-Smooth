@@ -16,6 +16,7 @@ use parent qw/
     DBIx::Class::Smooth::Lookup::Operators::in
     DBIx::Class::Smooth::Lookup::Operators::like
     DBIx::Class::Smooth::Lookup::Operators::not_in
+    DBIx::Class::Smooth::Lookup::Operators::isnull
 /;
 
 1;

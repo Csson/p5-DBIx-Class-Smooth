@@ -10,6 +10,7 @@ our $VERSION = '0.0109';
 
 use parent 'DBIx::Class::Schema';
 use Carp qw/croak/;
+use DBIx::Class::Smooth::Exception::Factory;
 
 use experimental qw/postderef signatures/;
 
@@ -36,6 +37,10 @@ sub _dbix_class_smooth_create_methods($self) {
         *{ caller(1) . "::$method" } = sub {
             my $rs = shift->resultset($source);
 
+            if($rs->can('default_annotations')) {
+                $rs = $rs->default_annotations();
+            }
+
             return !scalar @_                  ? $rs
                  : defined $_[0] && !ref $_[0] ? $rs->find(@_)
                  : ref $_[0] eq 'ARRAY'        ? $rs->find(@$_[1..$#_], { key => $_->[0] })
@@ -43,6 +48,17 @@ sub _dbix_class_smooth_create_methods($self) {
                  ;
         };
     }
+
+
+    if(!$self->can('exception_factory')) {
+        no strict 'refs';
+
+        my $exception_factory = DBIx::Class::Smooth::Exception::Factory->new(schema => $self);
+        *{ caller(1) . "::exception_factory" } = sub {
+            return $exception_factory;
+        };
+    }
+
     $dbix_class_smooth_methods_created = 1;
 
 }

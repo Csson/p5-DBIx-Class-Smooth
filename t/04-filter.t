@@ -16,10 +16,11 @@ BEGIN {
 
 use Test::DBIx::Class
     -config_path => [qw/t etc test_fixtures/],
+    -connect_info => ['dbi:MariaDB:database=testsmooth','phototurf','S'],
     -traits=>['Testmysqld'];
 
 my $mysqld = Test::mysqld->new(auto_start => undef) or plan skip_all => $Test::mysqld::errstr;
-
+reset_schema();
 fixtures_ok 'basic';
 
 my $tests = [
@@ -57,7 +58,17 @@ my $tests = [
         name => 'ident',
         test => Book->_smooth__prepare_for_filter(book_authors__author__country__name__ident => 'me.title'),
         expected => [ 'country.name' => { -ident => 'me.title' } ],
-    }
+    },
+    #{
+    #    name => 'isnull',
+    #    test => Publisher->_smooth__prepare_for_filter(main_office_location__isnull => 1),
+    #    expected => [ 'me.main_office_location' => { '=', undef }],
+    #},
+    #{
+    #    name => 'is not null',
+    #    test => Publisher->_smooth__prepare_for_filter(main_office_location__isnull => 0),
+    #    expected => [ 'me.main_office_location' => { '!=', undef }],
+    #}
 ];
 
 

@@ -4,17 +4,14 @@ DBIx::Class::Smooth - Sugar for DBIx::Class
 
 <div>
     <p>
-    <img src="https://img.shields.io/badge/perl-5.20+-blue.svg" alt="Requires Perl 5.20+" />
-    <a href="https://travis-ci.org/Csson/p5-DBIx-Class-Smooth"><img src="https://api.travis-ci.org/Csson/p5-DBIx-Class-Smooth.svg?branch=master" alt="Travis status" /></a>
-    <a href="http://cpants.cpanauthors.org/release/CSSON/DBIx-Class-Smooth-0.0108"><img src="http://badgedepot.code301.com/badge/kwalitee/CSSON/DBIx-Class-Smooth/0.0108" alt="Distribution kwalitee" /></a>
-    <a href="http://matrix.cpantesters.org/?dist=DBIx-Class-Smooth%200.0108"><img src="http://badgedepot.code301.com/badge/cpantesters/DBIx-Class-Smooth/0.0108" alt="CPAN Testers result" /></a>
-    <img src="https://img.shields.io/badge/coverage-76.1%-orange.svg" alt="coverage 76.1%" />
+    <img src="https://img.shields.io/badge/perl-5.20+-brightgreen.svg" alt="Requires Perl 5.20+" />
+    <a href="https://github.com/Csson/p5-DBIx-Class-Smooth/actions?query=workflow%3Amakefile-test"><img src="https://img.shields.io/github/workflow/status/Csson/p5-DBIx-Class-Smooth/makefile-test" alt="Build status at Github" /></a>
     </p>
 </div>
 
 # VERSION
 
-Version 0.0108, released 2020-11-29.
+Version 0.0109, released 2025-01-18.
 
 # SYNOPSIS
 
@@ -112,13 +109,13 @@ Documentation is expected to improve with time.
 
 # DESCRIPTION
 
-DBIx::Class::Smooth is a sugar layer for [DBIx::Class](https://metacpan.org/pod/DBIx::Class), partially built on top of [DBIx::Class::Candy](https://metacpan.org/pod/DBIx::Class::Candy) and [DBIx::Class::Helpers](https://metacpan.org/pod/DBIx::Class::Helpers).
+DBIx::Class::Smooth is a sugar layer for [DBIx::Class](https://metacpan.org/pod/DBIx%3A%3AClass), partially built on top of [DBIx::Class::Candy](https://metacpan.org/pod/DBIx%3A%3AClass%3A%3ACandy) and [DBIx::Class::Helpers](https://metacpan.org/pod/DBIx%3A%3AClass%3A%3AHelpers).
 
 # MORE DOCUMENTATION
 
 for :list
-\* [DBIx::Class::Smooth::Schema](https://metacpan.org/pod/DBIx::Class::Smooth::Schema)
-\* [DBIx::Class::Smooth::Fields](https://metacpan.org/pod/DBIx::Class::Smooth::Fields)
+\* [DBIx::Class::Smooth::Schema](https://metacpan.org/pod/DBIx%3A%3AClass%3A%3ASmooth%3A%3ASchema)
+\* [DBIx::Class::Smooth::Fields](https://metacpan.org/pod/DBIx%3A%3AClass%3A%3ASmooth%3A%3AFields)
 
 # SOURCE
 
@@ -134,7 +131,7 @@ Erik Carlsson <info@code301.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2018 by Erik Carlsson.
+This software is copyright (c) 2025 by Erik Carlsson.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
