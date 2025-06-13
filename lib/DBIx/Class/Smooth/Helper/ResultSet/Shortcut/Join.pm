@@ -17,10 +17,16 @@ sub join($self, @args) {
     if(!scalar @args) {
         return $self;
     }
-    elsif(scalar @args >= 2) {
-        die 'Too many args';
+
+    for my $arg (@args) {
+        if ($arg =~ m/\./) {
+            my ($first, $second) = split m/\./ => $arg;
+            $arg = { $first => $second };
+        }
+        $self = $self->search(undef, { join => $arg });
     }
-    return $self->search(undef, { join => $args[0]});
+
+    return $self;
 }
 
 1;
